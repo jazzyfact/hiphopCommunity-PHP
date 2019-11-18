@@ -106,7 +106,7 @@
                         <form action="loginPost.php" method="post">
                             <div class="form-group">
                                 <label for="inputEmail">Email address</label>
-                                <input type="text" name="email" class="form-control"  placeholder="<?php echo $_REQUEST["email"]?>">
+                                <input type="text" name="email" class="form-control"  value="<?php echo $_REQUEST["email"]?>">
 
                                 <!--                                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter E-mail">-->
                                 <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>

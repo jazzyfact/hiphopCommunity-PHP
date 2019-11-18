@@ -116,9 +116,40 @@ ini_set("display_errors", 1);
                             <div class="hero-slides-content text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">2019.07.22</h6>
                                 <h2 data-animation="fadeInUp" data-delay="300ms">이방인 <span>이방인</span></h2>
-                                <a data-animation="fadeInUp" data-delay="500ms" href="https://www.melon.com/album/detail.htm?albumId=10309465" class="btn oneMusic-btn mt-50">Listen to Music <i class="fa fa-angle-double-right"></i></a>
-<!--                                $.post("https://www.melon.com/album/detail.htm?albumId=10309465")-->
 
+
+                                <form name="newCapture" method="get" action="">
+                                    <a data-animation="fadeInUp" data-delay="500ms"  onclick="return SubmitForm(this.form)" class="btn oneMusic-btn mt-50">Listen to Music <i class="fa fa-angle-double-right"></i></a>
+<!--                                    <a data-animation="fadeInUp" data-delay="500ms" input type="button" value="캡쳐하기" onclick="return SubmitForm(this.form)" class="btn oneMusic-btn mt-50">Listen to Music <i class="fa fa-angle-double-right"></i></a>-->-->
+                                </form>
+                                <script>
+                                    function SubmitForm(){
+                                        var objPopup = window.open('https://music.bugs.co.kr/album/20266998?wl_ref=list_ab_03','myWindow','resizable=yes, top=0, left=100, width=400, height=450, scrollbars=no');
+                                        document.newCapture.target="myWindow";      // 타켓
+                                        document.newCapture.action="https://music.bugs.co.kr/album/20266998?wl_ref=list_ab_03";       // 수행할 경로
+                                        if ( objPopup == null)                                  // 팝업이 뜨는지 확인
+                                            alert('차단된 팝업창을 허용해 주세요');
+                                        else{
+                                            $("#SubmitForm").submit();
+                                            objPopup.focus();
+                                        }
+                                    }
+                                </script>
+                                <!--https://music.bugs.co.kr/album/20266998?wl_ref=list_ab_03-->
+
+
+<!--                                <a data-animation="fadeInUp" data-delay="500ms"  onclick="new_caputre()" class="btn oneMusic-btn mt-50">Listen to Music <i class="fa fa-angle-double-right"></i></a>-->
+<!--                                $.post("https://www.melon.com/album/detail.htm?albumId=10309465")-->
+<!--                                <a data-animation="fadeInUp" data-delay="500ms" href="#" onclick="acyncMovePage('/test/test.do')"  class="btn oneMusic-btn mt-50">LIVE IN CONCERT<i class="fa fa-angle-double-right"></i></a>-->
+<!--                                <script >-->
+<!--                                $('#move').bind('submit', function(){-->
+<!--                                url:'https://www.melon.com/album/detail.htm?albumId=10309465',-->
+<!--                                method:'GET',-->
+<!--                                        dataType: 'text'-->
+<!---->
+<!---->
+<!--                                });-->
+<!--                                </script>-->
 
                             </div>
                         </div>
@@ -139,11 +170,6 @@ ini_set("display_errors", 1);
                                 <h6 data-animation="fadeInUp" data-delay="100ms">2019.12.28 ~ 29</h6>
                                 <h2 data-animation="fadeInUp" data-delay="300ms">Strange No More <span>Strange No More</span></h2>
                                 <a data-animation="fadeInUp" data-delay="500ms" href="http://ticket.yes24.com/Pages/Perf/Detail/Detail.aspx?IdPerf=35487" class="btn oneMusic-btn mt-50">LIVE IN CONCERT<i class="fa fa-angle-double-right"></i></a>
-                                <!--여기에 ajax를 이용해서 onclik을 넣어보자-->
-
-
-
-
 <!--                                <form action="http://ticket.yes24.com/Pages/Perf/Detail/Detail.aspx?IdPerf=35487" method="post">-->
 <!--                                    <button type="submit" name="your_name" value="your_value" class="btn-link">Go</button>-->
 <!--                                </form>-->
@@ -181,7 +207,8 @@ ini_set("display_errors", 1);
                     <div class="albums-slideshow owl-carousel">
                         <!-- Single Album -->
                         <div class="single-album">
-                            <img src="image/backintime.jpg" alt="">
+<!--                            <img src="image/backintime.jpg"  onclick="window.open('/php/popup.php', 'new', 'width=800, height=600, left=0, top=100, scrollbars=yes');" style="cursor:pointer">-->
+                            <img src="image/backintime.jpg" class="click_img">
                             <div class="album-info">
                                 <a href="#">
                                     <h5>Back In Time</h5>
@@ -319,6 +346,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </footer>
     <!-- ##### Footer Area Start ##### -->
 
+<!---->
+<!--<script>-->
+<!---->
+<!--    function acyncMovePage("https://www.melon.com/album/detail.htm?albumId=10309465"){-->
+<!--        // ajax option-->
+<!--        var ajaxOption = {-->
+<!--            url : "https://www.melon.com/album/detail.htm?albumId=10309465",-->
+<!--            async : true,-->
+<!--            type : "GET",-->
+<!--            dataType : "html",-->
+<!--            cache : false-->
+<!--        };-->
+<!---->
+<!--        $.ajax(ajaxOption).done(function(data){-->
+<!--            // Contents 영역 삭제-->
+<!--            $('#bodyContents').children().remove();-->
+<!--            // Contents 영역 교체-->
+<!--            $('#bodyContents').html(data);-->
+<!--        });-->
+<!--    }-->
+<!---->
+<!--</script>-->
+
+
+
     <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
@@ -330,6 +382,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+
+<!--<script type="text/javascript">-->
+<!--    var img = document.getElementsByClassName('click_img');-->
+<!--    for (var x = 0; x < img.length; x++) {-->
+<!--        type : "GET";-->
+<!--        img.item(x).onclick=function() {window.open(this.src)};-->
+<!--    }-->
+<!--</script>-->
+<!---->
+
+
+
+
+
 </body>
 
 </html>
