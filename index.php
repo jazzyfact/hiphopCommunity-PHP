@@ -139,6 +139,11 @@ ini_set("display_errors", 1);
                                 <h6 data-animation="fadeInUp" data-delay="100ms">2019.12.28 ~ 29</h6>
                                 <h2 data-animation="fadeInUp" data-delay="300ms">Strange No More <span>Strange No More</span></h2>
                                 <a data-animation="fadeInUp" data-delay="500ms" href="http://ticket.yes24.com/Pages/Perf/Detail/Detail.aspx?IdPerf=35487" class="btn oneMusic-btn mt-50">LIVE IN CONCERT<i class="fa fa-angle-double-right"></i></a>
+                                <!--여기에 ajax를 이용해서 onclik을 넣어보자-->
+
+
+
+
 <!--                                <form action="http://ticket.yes24.com/Pages/Perf/Detail/Detail.aspx?IdPerf=35487" method="post">-->
 <!--                                    <button type="submit" name="your_name" value="your_value" class="btn-link">Go</button>-->
 <!--                                </form>-->
