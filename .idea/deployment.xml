@@ -5,7 +5,7 @@
       <paths name="Ubnutu18.04LTS.기초PHP">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/usr/local/apapche/htdocs" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
