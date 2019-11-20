@@ -97,7 +97,7 @@ $list_stt->execute();
                         <th width="100">조회수</th>
                     </tr>
                     <br><br>
-                    <a href="../board/freeTalkWrite.php"">
+                    <a href="../html/freeTalkWrite.html"">
                     <button type="button" class="btn oneMusic-btn mt-50">글쓰기</button>
                     <br><br>
 
