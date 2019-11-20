@@ -1,5 +1,6 @@
 <?php
 include "../include/header.html";
+
 ?>
 
 
@@ -57,7 +58,7 @@ include "../include/header.html";
                     <h3>Welcome Back</h3>
                     <!-- Login Form -->
                     <div class="login-form">
-                        <form action="loginPost.php" method="post">
+                        <form action="loginCheck.php" method="post">
                             <div class="form-group">
                                 <label for="inputEmail">Email address</label>
                                 <input type="text" name="email" class="form-control"  placeholder="Enter Email">
