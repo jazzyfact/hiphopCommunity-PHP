@@ -42,55 +42,8 @@ ini_set("display_errors", 1);
 </div>
 
 <!-- ##### Header Area Start ##### -->
-<header class="header-area">
-    <!-- Navbar Area -->
-    <div class="oneMusic-main-menu">
-        <div class="classy-nav-container breakpoint-off">
-            <div class="container">
-                <!-- Menu -->
-                <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+<?php include "../include/header.html"; ?>
 
-                    <!-- Nav brand -->
-                    <a href="../index.php" class="nav-brand"><img src ="../image/esens_emogi.png" width="30px" height="30px" alt="">Esens FanSite</a>
-
-                    <!-- Navbar Toggler -->
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-
-                    <!-- Menu -->
-                    <div class="classy-menu">
-
-                        <!-- Nav Start -->
-                        <div class="classynav">
-                            <ul>
-                                <li><a href="../index.php">Home</a></li>
-                                <li><a href="profile.php">Profile</a></li>
-                                <li><a href="albums.php">Albums</a></li>
-                                <li><a href="picture.php">Picture</a></li>
-                                <li><a href="freetalk.php">FreeTalk</a></li>
-                                <li><a href="contact.php">Contact</a></li>
-                            </ul>
-
-                            <!-- Login/Register & Cart Button -->
-                            <div class="login-register-cart-button d-flex align-items-center">
-                                <!-- Login/Register -->
-                                <div class="login-register-btn mr-50">
-                                    <a href="registerPost.php" id="loginBtn">Login&nbsp&nbsp</a>
-                                    <a href="register.php" id="SignUpBtn"> Register</a>
-                                    <!--나중이 밑에 있는 코드로 바꿔야함-->
-<!--                                    <a href="register.php" id="SignUpBtn"> Register</a>-->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Nav End -->
-
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
 <!-- ##### Header Area End ##### -->
 
 
@@ -115,7 +68,7 @@ ini_set("display_errors", 1);
                     <!-- Login Form -->
                     <div class="login-form">
 <!--                        <form action="signup-form" action="includes/sign_ok.php" method="post">-->
-                        <form action="registerPost.php" method="post">
+                        <form action="registerCheck.php" method="post">
                                 <div class="form-group">
                                     <label for="inputEmail">Email address</label>
 <!--                                    <input type="text" name="email" class="form-control"  placeholder="Enter E-mail">-->

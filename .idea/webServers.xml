@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="38378be4-63eb-4cee-92e8-c949fc85f1bd" name="Ubnutu18.04LTS.기초PHP" url="http://192.168.116.154">
-        <fileTransfer host="192.168.116.154" port="22" rootFolder="/usr/local/apache" accessType="SFTP">
+        <fileTransfer host="192.168.116.154" port="22" rootFolder="/usr/local/apache/htdocs" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
