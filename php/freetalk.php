@@ -94,7 +94,7 @@ ini_set("display_errors", 1);
             <div class="col-12 col-lg-9">
 
                 <!--부트스트랩 테이블 씀, 테이블 너비가 130% 비율로 꽉 차게 함-->
-                <table class="table table-striped table-bordered table-hover" id="mydata" style="width: 130%">
+                <table class="table table-striped table-bordered table-hover" id="mydata" style="width: 130%" >
                     <a href="../html/freeTalkWrite.html"">
                     <button type="button" class="btn oneMusic-btn mt-5">글쓰기</button></a>
                     <tr>
