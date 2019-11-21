@@ -386,6 +386,41 @@ img {
   line-height: 47px;
   font-weight: 700;
   text-transform: capitalize; }
+
+/*추가*/
+.oneMusic-btn-custom {
+  background-color: #fff;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  min-width: 80px;
+  height: 49px;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 0;
+  padding: 0 30px;
+  font-size: 16px;
+  line-height: 47px;
+  font-weight: 700;
+  text-transform: capitalize; }
+
+
+.oneMusic-btn-custom:hover, .oneMusic-btn-custom:focus {
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #000000;
+  color: #fff; }
+.oneMusic-btn-custom.btn-2 {
+  background-color: #000000;
+  color: #fff; }
+.oneMusic-btn-custom.btn-2:hover, .oneMusic-btn-custom.btn-2:focus {
+  background-color: #fff;
+  color: #232323; }
+
+
+
   .oneMusic-btn i {
     margin-left: 5px; }
   .oneMusic-btn:hover, .oneMusic-btn:focus {

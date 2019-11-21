@@ -115,8 +115,8 @@ ini_set("display_errors", 1);
                         ?>
                         <tbody>
                         <tr>
-                            <td><a href='read.php?num=<?= $list_row['idx'] ?>'><?= $list_row['idx'] ?></a></td>
-                            <td><a href='read.php?num=<?= $list_row['idx'] ?>'><?= $list_row['title'] ?></a></td>
+                            <td><a href='../php/freeTalkRead.php?idx=<?= $list_row['idx'] ?>'><?= $list_row['idx'] ?></a></td>
+                            <td><a href='../php/freeTalkRead.php?idx=<?= $list_row['idx'] ?>'><?= $list_row['title'] ?></a></td>
                             <td><?= $list_row['name'] ?></td>
                             <td><?= $list_row['date'] ?></td>
                             <td><?= $list_row['hit'] ?></td>
@@ -206,9 +206,7 @@ include "../include/footer.html";
 <!-- ##### Footer Area Start ##### -->
 
 
-<script>
-    $('#mydata').dataTable();
-</script>
+
 
 
 <!-- ##### All Javascript Script ##### -->
@@ -222,6 +220,8 @@ include "../include/footer.html";
 <script src="../js/plugins/plugins.js"></script>
 <!-- Active js -->
 <script src="../js/active.js"></script>
+
+$('#mydata').dataTable();
 </body>
 
 
