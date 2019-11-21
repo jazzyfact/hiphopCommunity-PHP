@@ -8,10 +8,10 @@
 //?>
 
 <?php
-session_start();
+
 include "../../pdo_db.php";
 include "../php/topLogin.php";
-
+$pdo =connect();
 if (!isset($_SESSION['email'])) {
 echo "
 <script>
