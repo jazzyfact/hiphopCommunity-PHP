@@ -1,7 +1,7 @@
 
 <?php
 include "../../pdo_db.php"; //pdo
-include "/php/topLogin.php";
+include "../php/topLogin.php";
 
 $pdo = connect();
 $email = $_POST['email'];
@@ -18,7 +18,7 @@ if(!$_POST['email'])
 {
     echo
     "<script>
-      window.alert('이메일을 입력하세요.');
+      window.alert('이메일 입력하세요.');
       history.back(-1);
     </script>";
 }
@@ -36,7 +36,7 @@ else
     {
         echo
         "<script>
-        window.alert('비밀번호 또는 비밀번호가 일치하지 않습니다.');
+        window.alert('이메일 또는 비밀번호가 일치하지 않습니다.');
         history.back(-1);
       </script>";
     }

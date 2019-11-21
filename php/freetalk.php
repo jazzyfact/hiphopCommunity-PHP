@@ -1,6 +1,8 @@
 <?php
 include "../include/header.html";
 include "../../pdo_db.php";
+
+
 $dbo = connect();
 // 페이징에 필요한 변수 11개
 // 페이지 값이 없다면 1이되도록 지정
@@ -97,7 +99,7 @@ $list_stt->execute();
                         <th width="100">조회수</th>
                     </tr>
                     <br><br>
-                    <a href="../html/freeTalkWrite.html"">
+                    <a href="../php/freeTalkInsert.php"">
                     <button type="button" class="btn oneMusic-btn mt-50">글쓰기</button>
                     <br><br>
 
