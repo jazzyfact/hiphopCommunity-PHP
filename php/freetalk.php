@@ -18,7 +18,9 @@ $list_sql = "select * from free_talk order by idx desc limit $first, $list_size"
 $list_stt = $dbo->prepare($list_sql);
 $list_stt->execute();
 
-
+//에러
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 ?>
 
 <!DOCTYPE html>
@@ -46,14 +48,16 @@ $list_stt->execute();
 
     <!--버튼css-->
 <!--        <link rel="stylesheet" type="text/css" href="../css/button.css"/>-->
-    <style>
 
-        #mydata {
-            text-align: center;
-            font-family: 'Do Hyeon', sans-serif;
-            font-size: 20px;
-        }
-    </style>
+<!--    <style>-->
+<!---->
+<!--        #mydata {-->
+<!--            text-align: center;-->
+<!--            font-family: 'Do Hyeon', sans-serif;-->
+<!--            font-size: 20px;-->
+<!--        }-->
+<!--    </style>-->
+
 </head>
 
 <body>
@@ -76,8 +80,9 @@ $list_stt->execute();
 <!-- ##### Breadcumb Area Start ##### -->
 <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../image/freeimage.jpg);">
     <div class="bradcumbContent">
-        <p>See what’s new</p>
+
         <h2>FreeTalk</h2>
+
     </div>
 </section>
 <!-- ##### Breadcumb Area End ##### -->
@@ -90,7 +95,8 @@ $list_stt->execute();
 
                 <!--부트스트랩 테이블 씀, 테이블 너비가 130% 비율로 꽉 차게 함-->
                 <table class="table table-striped table-bordered table-hover" id="mydata" style="width: 130%">
-
+                    <a href="../html/freeTalkWrite.html"">
+                    <button type="button" class="btn oneMusic-btn mt-5">글쓰기</button></a>
                     <tr>
                         <th width="70">번호</th>
                         <th width=50%>제목</th>
@@ -99,13 +105,15 @@ $list_stt->execute();
                         <th width="100">조회수</th>
                     </tr>
                     <br><br>
-                    <a href="../html/freeTalkWrite.html"">
-                    <button type="button" class="btn oneMusic-btn mt-50">글쓰기</button>
+<!--                    <a href="../html/freeTalkWrite.html"">-->
+<!--                    <button type="button" class="btn oneMusic-btn mt-50">글쓰기</button>-->
+
                     <br><br>
 
                     <?php
                     while ($list_row = $list_stt->fetch()) {
                         ?>
+                        <tbody>
                         <tr>
                             <td><a href='read.php?num=<?= $list_row['idx'] ?>'><?= $list_row['idx'] ?></a></td>
                             <td><a href='read.php?num=<?= $list_row['idx'] ?>'><?= $list_row['title'] ?></a></td>
@@ -113,6 +121,7 @@ $list_stt->execute();
                             <td><?= $list_row['date'] ?></td>
                             <td><?= $list_row['hit'] ?></td>
                         </tr>
+                        </tbody>
                         <?php
                     }
                     echo "</table>";
@@ -165,7 +174,7 @@ $list_stt->execute();
                     }
                     ?>
 
-                    </center>
+<!--                    </center>-->
 
 
                     <!-- Pagination -->
@@ -180,6 +189,7 @@ $list_stt->execute();
 <!--                        </nav>-->
 <!--                    </div>-->
                     <!--페이징 끝-->
+                </table>
             </div>
         </div>
     </div>
