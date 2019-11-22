@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script>
+    function setCookie(name, value, expiredays){
+        var todayDate = new Date();
+        todayDate.setDate (todayDate.getDate() + expiredays);
+        document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+    }
+
+    function closePop(){
+        if (document.frm.pop.checked){
+            setCookie("Hi_esens_pop_up", "done", 1);
+        }
+        self.close();
+    }
+</script>
+</head>
+<body>
+<form name="frm">
+    <div class="PopupWindow">
+        <div class="PopupButton">
+            <a onClick="opener.location.href='http://naver.co.kr'; self.close();" target="_blank"><img src="../Reports/image/updatebutton.png" style="width:120px; height:30px;"></a>
+        </div>
+        <div class="PopupBottom">
+            <div class="PopupText">오늘 하루만 보기</div>
+            <input class="PopupCheck" type='checkbox' name='pop' onClick='closePop()'>
+        </div>
+    </div>
+</form>
+</body>
+</html>
+
+

@@ -27,7 +27,9 @@ ini_set("display_errors", 1);
 
 </head>
 
-<body>
+<body onload="javascript:openPopup('/html/popUp.html')">
+
+
 
 
 <!-- Preloader -->
@@ -84,10 +86,8 @@ ini_set("display_errors", 1);
                                     <? include "./php/topLogin.php"; ?>
 
 
-
-
-<!--                                    <a href="php/login.php" id="loginBtn">Login&nbsp&nbsp</a>-->
-<!--                                    <a href="php/register.php" id="SignUpBtn"> Register</a>-->
+                                    <!--                                    <a href="php/login.php" id="loginBtn">Login&nbsp&nbsp</a>-->
+                                    <!--                                    <a href="php/register.php" id="SignUpBtn"> Register</a>-->
                                 </div>
                             </div>
                         </div>
@@ -377,14 +377,40 @@ ini_set("display_errors", 1);
 <!-- Active js -->
 <script src="js/active.js"></script>
 
-<!--<script type="text/javascript">-->
-<!--    var img = document.getElementsByClassName('click_img');-->
-<!--    for (var x = 0; x < img.length; x++) {-->
-<!--        type : "GET";-->
-<!--        img.item(x).onclick=function() {window.open(this.src)};-->
-<!--    }-->
-<!--</script>-->
-<!---->
+
+<script>
+
+    jQuery(document).ready(function($) {
+        pevent();
+    });
+
+    function pevent(){
+        function getCookie(name){
+            var nameOfCookie = name + "=";
+            var x = 0;
+            while (x <= document.cookie.length){
+                var y = (x + nameOfCookie.length);
+                if (document.cookie.substring(x, y) == nameOfCookie){
+                    if ((endOfCookie = document.cookie.indexOf(";", y)) == -1){
+                        endOfCookie = document.cookie.length;
+                    }
+                    return unescape (document.cookie.substring(y, endOfCookie));
+                }
+                x = document.cookie.indexOf (" ", x) + 1;
+                if (x == 0) break;
+            }
+            return "";
+        }
+        if (getCookie("Hi_esens_pop_up") != "done"){
+            var popUrl = "./html/popUp.html"; //팝업창에 출력될 페이지 URL
+            var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+            window.open(popUrl,"",popOption);
+        }
+    }
+
+
+
+</script>
 
 
 </body>
