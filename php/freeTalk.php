@@ -43,20 +43,20 @@ ini_set("display_errors", 1);
     <link rel="stylesheet" href="../css/style.css">
 
     <!-- 부트스트랩 -->
-<!--    <link href="../css/bootstrap.min.css" rel="stylesheet">-->
+    <!--    <link href="../css/bootstrap.min.css" rel="stylesheet">-->
     <link href="../css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!--버튼css-->
-<!--        <link rel="stylesheet" type="text/css" href="../css/button.css"/>-->
+    <!--        <link rel="stylesheet" type="text/css" href="../css/button.css"/>-->
 
-<!--    <style>-->
-<!---->
-<!--        #mydata {-->
-<!--            text-align: center;-->
-<!--            font-family: 'Do Hyeon', sans-serif;-->
-<!--            font-size: 20px;-->
-<!--        }-->
-<!--    </style>-->
+    <!--    <style>-->
+    <!---->
+    <!--        #mydata {-->
+    <!--            text-align: center;-->
+    <!--            font-family: 'Do Hyeon', sans-serif;-->
+    <!--            font-size: 20px;-->
+    <!--        }-->
+    <!--    </style>-->
 
 </head>
 
@@ -95,7 +95,7 @@ ini_set("display_errors", 1);
 
                 <!--부트스트랩 테이블 씀, 테이블 너비가 130% 비율로 꽉 차게 함-->
                 <table class="table table-striped table-bordered table-hover" id="mydata" style="width: 130%" >
-                    <a href="../html/freeTalkWrite.html"">
+                    <a href="../board/freeTalkWrite.html"">
                     <button type="button" class="btn oneMusic-btn mt-5">글쓰기</button></a>
                     <tr>
                         <th width="70">번호</th>
@@ -105,8 +105,8 @@ ini_set("display_errors", 1);
                         <th width="100">조회수</th>
                     </tr>
                     <br><br>
-<!--                    <a href="../html/freeTalkWrite.html"">-->
-<!--                    <button type="button" class="btn oneMusic-btn mt-50">글쓰기</button>-->
+                    <!--                    <a href="../html/freeTalkWrite.html"">-->
+                    <!--                    <button type="button" class="btn oneMusic-btn mt-50">글쓰기</button>-->
 
                     <br><br>
 
@@ -115,8 +115,8 @@ ini_set("display_errors", 1);
                         ?>
                         <tbody>
                         <tr>
-                            <td><a href='../php/freeTalkRead.php?idx=<?= $list_row['idx'] ?>'><?= $list_row['idx'] ?></a></td>
-                            <td><a href='../php/freeTalkRead.php?idx=<?= $list_row['idx'] ?>'><?= $list_row['title'] ?></a></td>
+                            <td><a href='../board/freeTalkRead.php?idx=<?= $list_row['idx'] ?>'><?= $list_row['idx'] ?></a></td>
+                            <td><a href='../board/freeTalkRead.php?idx=<?= $list_row['idx'] ?>'><?= $list_row['title'] ?></a></td>
                             <td><?= $list_row['name'] ?></td>
                             <td><?= $list_row['date'] ?></td>
                             <td><?= $list_row['hit'] ?></td>
@@ -134,7 +134,7 @@ ini_set("display_errors", 1);
                     $total_page = ceil($total_list / $list_size);
                     $row = ceil($_GET['page'] / $page_size);//현재 자신이 위치한 블럭의 수
                     $start_page = (($row - 1) * $page_size) + 1;//블럭에서 가장 첫번째 페이지
-                   //페이지가 마이너스 되는 경우가 있어서 초기값을 1로 줌
+                    //페이지가 마이너스 되는 경우가 있어서 초기값을 1로 줌
                     if ($start_page <= 0) {
                         $start_page = 1;
                     }
@@ -174,20 +174,20 @@ ini_set("display_errors", 1);
                     }
                     ?>
 
-<!--                    </center>-->
+                    <!--                    </center>-->
 
 
                     <!-- Pagination -->
-<!--                    <div class="oneMusic-pagination-area wow fadeInUp" data-wow-delay="300ms">-->
-<!--                        <nav>-->
-<!--                            <ul class="pagination">-->
-<!---->
-<!--                                <li class="page-item active"><a class="page-link" href="#">01</a></li>-->
-<!--                                <li class="page-item active"><a class="page-link" href="#">02</a></li>-->
-<!--                                <li class="page-item active"><a class="page-link" href="#">03</a></li>-->
-<!--                            </ul>-->
-<!--                        </nav>-->
-<!--                    </div>-->
+                    <!--                    <div class="oneMusic-pagination-area wow fadeInUp" data-wow-delay="300ms">-->
+                    <!--                        <nav>-->
+                    <!--                            <ul class="pagination">-->
+                    <!---->
+                    <!--                                <li class="page-item active"><a class="page-link" href="#">01</a></li>-->
+                    <!--                                <li class="page-item active"><a class="page-link" href="#">02</a></li>-->
+                    <!--                                <li class="page-item active"><a class="page-link" href="#">03</a></li>-->
+                    <!--                            </ul>-->
+                    <!--                        </nav>-->
+                    <!--                    </div>-->
                     <!--페이징 끝-->
                 </table>
             </div>

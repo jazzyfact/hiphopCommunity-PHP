@@ -49,7 +49,7 @@ echo
     //            location.href='error.php';
 
 
-    location.href='freeTalk.php';
+    location.href='../php/freeTalk.php';
 </script>";
 }
 
