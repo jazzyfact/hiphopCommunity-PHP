@@ -68,7 +68,7 @@ include "../include/header.html";
                                 <li><a href="profile.php">Profile</a></li>
                                 <li><a href="albums.php">Albums</a></li>
                                 <li><a href="picture.php">Picture</a></li>
-                                <li><a href="freetalk.php">FreeTalk</a></li>
+                                <li><a href="freeTalk.php">FreeTalk</a></li>
                             </ul>
 
                             <!-- Login/Register & Cart Button -->

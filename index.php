@@ -75,7 +75,7 @@ ini_set("display_errors", 1);
                                 <li><a href="php/profile.php">Profile</a></li>
                                 <li><a href="php/albums.php">Albums</a></li>
                                 <li><a href="php/picture.php">Picture</a></li>
-                                <li><a href="php/freetalk.php">FreeTalk</a></li>
+                                <li><a href="php/freeTalk.php">FreeTalk</a></li>
                             </ul>
 
                             <!-- Login/Register & Cart Button -->
@@ -337,7 +337,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <li><a href="php/profile.php">Profile</a></li>
                             <li><a href="php/albums.php">Albums</a></li>
                             <li><a href="php/picture.php">Picture</a></li>
-                            <li><a href="php/freetalk.php">FreeTalk</a></li>
+                            <li><a href="php/freeTalk.php">FreeTalk</a></li>
                         </ul>
                     </div>
                 </div>

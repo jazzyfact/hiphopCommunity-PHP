@@ -104,6 +104,27 @@ img {
   font-family: 'Do Hyeon', sans-serif;
   font-size: 20px;
 }
+/*게시글 읽을 때 라인*/
+
+
+
+
+
+
+#bo_line {
+  width: 500px;
+  height: 2px;
+  background: gray;
+  margin-top: 20px;
+}
+
+
+#bo_content {
+  /*margin-top: 20px;*/
+  padding: 12px;
+  /*background: white;*/
+}
+
 
 
 /* :: 3.1.0 Spacing */
@@ -387,7 +408,7 @@ img {
   font-weight: 700;
   text-transform: capitalize; }
 
-/*추가*/
+/*추가 게시글 읽을 떄 버튼*/
 .oneMusic-btn-custom {
   background-color: #fff;
   -webkit-transition-duration: 500ms;
