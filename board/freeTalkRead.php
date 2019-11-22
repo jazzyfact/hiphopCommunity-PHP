@@ -91,10 +91,10 @@ ini_set("display_errors", 1);
 
 
 
-<!--여기서 작성-->
+                <!--여기서 작성-->
 
                 <div class="11" style="text-align: justify-all">
-                <?= $read_row['title'] ?>             <div class="date" style="text-align: center">
+                    <?= $read_row['title'] ?>             <div class="date" style="text-align: center">
                         <?= $read_row['date'] ?></div>                 </div>
 
 
@@ -159,12 +159,12 @@ ini_set("display_errors", 1);
                 // 작성자와 로그인된 사용자가 같을 때, 또는 관리자일 때
                 if($read_row['name']==$now_id || $level_row['level']==0)
                 {
-                    echo "<a href='edit.php?num={$_GET['idx']}'> <input type=\"submit\" value=\"Modify\" class=\"btn oneMusic-btn-custom mt-5\" style=\"text-align: center\"></a>
+                    echo "<a href='../board/freeTalkModify.php?idx={$_GET['idx']}'> <input type=\"submit\" value=\"Modify\" class=\"btn oneMusic-btn-custom mt-5\" style=\"text-align: center\"></a>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <a href='del.php?num={$_GET['idx']}'><input type=\"submit\" value=\"Delete\" class=\"btn oneMusic-btn-custom mt-5\" style=\"text-align: center\">
+      <a href='../board/freeTalkDelete.php?idx={$_GET['idx']}'><input type=\"submit\" value=\"Delete\" class=\"btn oneMusic-btn-custom mt-5\" style=\"text-align: center\">
       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a>";
                 }
-                echo "<a href='list.php'><input type=\"submit\" value=\"List\" class=\"btn oneMusic-btn-custom mt-5\" style=\"text-align: center\"></a>";
+                echo "<a href='../php/freeTalk.php'><input type=\"submit\" value=\"List\" class=\"btn oneMusic-btn-custom mt-5\" style=\"text-align: center\"></a>";
                 ?>
                 <br><br>
                 <?php
@@ -176,11 +176,11 @@ ini_set("display_errors", 1);
 
 
 
-    // 4. 조회수를 늘리는 sql문
-    $view_sql = "update free_talk set hit=hit+1 where idx = {$_GET['idx']}";
-    $view_stt=$pdo->prepare($view_sql);
-    $view_stt->execute();
-  ?>
+                // 4. 조회수를 늘리는 sql문
+                $view_sql = "update free_talk set hit=hit+1 where idx = {$_GET['idx']}";
+                $view_stt=$pdo->prepare($view_sql);
+                $view_stt->execute();
+                ?>
                 </center>
 
 
