@@ -126,7 +126,7 @@
                                 <li><a href="../php/profile.php">Profile</a></li>
                                 <li><a href="../php/albums.php">Albums</a></li>
                                 <li><a href="../php/picture.php">Picture</a></li>
-                                <li><a href="../php/freetalk.php">FreeTalk</a></li>
+                                <li><a href="../php/freeTalk.php">FreeTalk</a></li>
                             </ul>
 
                             <!-- Login/Register & Cart Button -->
