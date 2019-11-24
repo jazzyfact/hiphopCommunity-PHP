@@ -11,39 +11,53 @@
 
 include "../../pdo_db.php";
 include "../php/topLogin.php";
-$pdo =connect();
+$pdo = connect();
 if (!isset($_SESSION['email'])) {
-echo "
+    echo "
 <script>
     window.alert('로그인 후 이용해주세요');
     location.href='../php/login.php';
 </script>";
 } else if (!$_POST['title']) {
-echo
-"<script>
+    echo
+    "<script>
     window.alert('제목을 입력하세요.');
     history.back(-1);
 </script>";
 } else if (!$_POST['content']) {
-echo
-"<script>
+    echo
+    "<script>
     window.alert('내용을 입력하세요.');
     history.back(-1);
 </script>";
 } else {
+
+
+    $images=$_FILES['image']['name'];
+    $tmp_dir=$_FILES['image']['tmp_name'];
+    $imageSize=$_FILES['image']['size'];
+
+    $upload_dir='../uploads/';
+    $imgExt=strtolower(pathinfo($images,PATHINFO_EXTENSION));
+    $valid_extensions=array('jpeg', 'jpg', 'png', 'gif', 'pdf');
+    $image=rand(1000, 1000000).".".$imgExt;
+    move_uploaded_file($tmp_dir, $upload_dir.$image);
+
+
 // 게시판 글을 입력하는 문
-$insert_sql = $pdo->prepare("insert into free_talk (title, name, content) VALUES (:title, :name, :content)");
-$insert_sql->bindValue(':name', $_SESSION['email']);
-$insert_sql->bindValue(':title', $_POST['title']);
-$insert_sql->bindValue(':content', $_POST['content']);
-$insert_sql->execute();
+    $insert_sql = $pdo->prepare("insert into free_talk (title, name, content, image) VALUES (:title, :name, :content, :image)");
+    $insert_sql->bindValue(':name', $_SESSION['email']);
+    $insert_sql->bindValue(':title', $_POST['title']);
+    $insert_sql->bindValue(':content', $_POST['content']);
+    $insert_sql->bindValue(':image', $image);
+    $insert_sql->execute();
 
 //mysql 에러 출력구문
 //    echo "\nPDOStatement::errorInfo()";
 //    $arr = $insert_sql->errorInfo();
 //    print_r($arr);
-echo
-"<script>
+    echo
+    "<script>
     window.alert('글이 정상적으로 등록되었습니다!');
 
     //            location.href='error.php';
@@ -57,6 +71,22 @@ echo
 //php 에러 출력 부분
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+
+//
+//$conn = new mysqli("127.0.0.1", "hyemi", "dltpstmRkdalsgh!!", "hiphop");
+//
+//foreach ($_FILES['images']['name'] as $i => $value) {
+//    $image_name = $_FILES['images']['tmp_name'][$i];
+//    $folder = "uploads/";
+//    $image_path = $folder . $_FILES['images']['name'][$i];
+//    move_uploaded_file($image_name, $image_path);
+//
+//    $sql = "insert into images (image_path) values (?)";
+//    $stmt = $conn->prepare($sql);
+//    $stmt->bind_param("s", $image_path);
+//    $stmt->execute();
+//}
+//echo "image Uploads 성공!!";
 
 ?>
 
