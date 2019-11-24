@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("127.0.0.1", "hyemi", "dltpstmRkdalsgh!!", "hiphop");
+$conn = new mysqli("", "", "", "");
 
 $sql = "select * from images order by  idx desc ";
 $stmt = $conn->prepare($sql);
