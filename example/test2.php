@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("127.0.0.1","hyemi","dltpstmRkdalsgh!!","hiphop");
+$conn = new mysqli("","","","");
 
 foreach ($_FILES['images']['name'] as $i => $value){
     $image_name = $_FILES['images']['tmp_name'][$i];
