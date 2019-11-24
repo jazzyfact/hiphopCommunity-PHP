@@ -26,13 +26,26 @@ else if(!$_POST['content'])
 }
 else
 {
+
+
+    $images=$_FILES['image']['name'];
+    $tmp_dir=$_FILES['image']['tmp_name'];
+    $imageSize=$_FILES['image']['size'];
+
+    $upload_dir='../uploads/';
+    $imgExt=strtolower(pathinfo($images,PATHINFO_EXTENSION));
+    $valid_extensions=array('jpeg', 'jpg', 'png', 'gif', 'pdf');
+    $image=rand(1000, 1000000).".".$imgExt;
+    move_uploaded_file($tmp_dir, $upload_dir.$image);
+
     // 글을 수정
-    $update_sql = "update free_talk set title=:title, content=:content where idx={$_GET['idx']}";
+    $update_sql = "update free_talk set title=:title, content=:content, image=:image where idx={$_GET['idx']}";
     $update_stt=$pdo->prepare($update_sql);
     $update_stt->execute(
         array(
             ':title'=>$_POST['title'],
-            ':content'=>$_POST['content']
+            ':content'=>$_POST['content'],
+            ':image'=>$image
         )
     );
 

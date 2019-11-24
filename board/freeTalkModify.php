@@ -92,7 +92,7 @@ ini_set("display_errors", 1);
 
 
                 <div class="11" style="text-align: center">
-                <form action="../board/freeTalkUpdate.php?idx=<?= $_GET['idx'] ?>" method="post">
+                <form action="../board/freeTalkUpdate.php?idx=<?= $_GET['idx'] ?>" method="post"  enctype="multipart/form-data" id="image_upload">
                     <!--        <form action="/page/board/update.php-->
                     <?php //echo edit_row['idx']; ?><!--" method="post">-->
                     <table>
@@ -103,8 +103,11 @@ ini_set("display_errors", 1);
 
                         <tr>
                             <td></td>
-                            <td><textarea class="ckeditor" name="content" rows="8" cols="80"><?= $edit_row['content'] ?></textarea></td>
+                            <td><textarea  name="content" rows="8" cols="80"><?= $edit_row['content'] ?></textarea></td>
                         </tr>
+                        <br><br>
+                        <img src="../uploads/<?= $edit_row['image'] ?>"><br><br>
+                        <input type="file" name="image" class="form-control" required="" accept="*/image">
                     </table>
                     <br>
 
