@@ -36,7 +36,7 @@ ini_set("display_errors", 1);
     <link href="../css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!--버튼css-->
-<!--            <link rel="stylesheet" type="text/css" href="../css/button.css"/>-->
+    <!--            <link rel="stylesheet" type="text/css" href="../css/button.css"/>-->
 
     <!--    <style>-->
     <!---->
@@ -85,28 +85,55 @@ ini_set("display_errors", 1);
 
 
 
-                <form action="../php/freeTalkInsert.php" method="post">
+                <form action="../board/freeTalkInsert.php" method="post" enctype="multipart/form-data" id="image_upload">
                     <div>
                         <input type="text" id="utitle" name="title" size="70" rows="1" cols="90" placeholder="제목"
                                maxlength="100"/>
                     </div>
                     <br>
-                        <tr>
+                    <tr>
 
-                            <td><textarea name="content" rows="20" cols="90" placeholder="내용"></textarea></td>
-                        </tr>
-                    </table>
+                        <td><textarea name="content" rows="20" cols="90" placeholder="내용"></textarea></td>
+                    </tr>
+                    <input type="file" name="image" class="form-control" required="" accept="*/image" multiple>
+
+
+
+<!--                    <form action="" method="post" enctype="multipart/form-data" id="image_upload">-->
+<!--                    <div class="custom-file">-->
+<!--                        <input type="file" name="images[]" class="custom-file-input" id="image" multiple>-->
+<!--                        <label for="image" class="custom-file-label">업로드 할 파일을 선택하세요</label>-->
+<!--                    </div>-->
+<!--                    </form>-->
+<!--                    <div class="form-group">-->
+<!--                        <input type="submit" name="submit" class="btn btn-info btn-block" value="Upload">-->
+<!--                    </div>-->
+
+<!--                    <form action="" method="post" enctype="multipart/form-data" id="image_upload">-->
+<!--                        <div class="form-group">-->
+<!--                            <div class="custom-file">-->
+<!--                                <input type="file" name="images[]" class="custom-file-input" id="image" multiple>-->
+<!--                                <label for="image" class="custom-file-label">업로드 할 파일을 선택하세요</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <input type="submit" name="submit" class="btn btn-info btn-block" value="Upload">-->
+<!--                        </div>-->
+<!--                        <h5 class="text-center text-success" id="result">Hello</h5>-->
+<!--                    </form>-->
+
+
                     <br>
                     <br>
                     <!-- 버튼 적용 -->
                     <input type="submit" value="글쓰기" class="btn oneMusic-btn mt-5" style="text-align: center">
                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     <input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn oneMusic-btn mt-5" >
-<!--                    <div class="bt_se">-->
-<!--&lt;!&ndash;                        <input type="submit" value="글쓰기" class="btn-gradient blue mini">&ndash;&gt;-->
-<!--&lt;!&ndash;                        <input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn-gradient blue mini">&ndash;&gt;-->
+                    <!--                    <div class="bt_se">-->
+                    <!--&lt;!&ndash;                        <input type="submit" value="글쓰기" class="btn-gradient blue mini">&ndash;&gt;-->
+                    <!--&lt;!&ndash;                        <input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn-gradient blue mini">&ndash;&gt;-->
 
-<!--                    </div>-->
+                    <!--                    </div>-->
                 </form>
 
 
@@ -131,9 +158,9 @@ include "../include/footer.html";
 <!-- ##### Footer Area Start ##### -->
 
 
-<script>
-    $('#mydata').dataTable();
-</script>
+<!--<script>-->
+<!--    $('#mydata').dataTable();-->
+<!--</script>-->
 
 
 <!-- ##### All Javascript Script ##### -->
@@ -147,6 +174,71 @@ include "../include/footer.html";
 <script src="../js/plugins/plugins.js"></script>
 <!-- Active js -->
 <script src="../js/active.js"></script>
+<!--이미지 ajax-->
+<!--이미지 업로드-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#image").on('change', function () {
+            var filename = $(this).val();
+            $(".custom-file-label").html(filename);
+        });
+        $("#image_upload").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url:"../php/freeTalkInsert.php",
+                method:'post',
+                processData: false,
+                contentType:false,
+                cache:false,
+                data: new FormData(this),
+                success:function (response) {
+                    $("#result").html(response);
+
+                }
+            });
+        });
+<!--<script-->
+<!--        src="https://code.jquery.com/jquery-3.4.1.min.js"-->
+<!--        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="-->
+<!--        crossorigin="anonymous"></script>-->
+<!--<script type="text/javascript">-->
+<!--    $(document).ready(function () {-->
+<!--        $("#image").on('change', function () {-->
+<!--            var filename = $(this).val();-->
+<!--            $(".custom-file-label").html(filename);-->
+<!--        });-->
+<!--        $("#image_upload").submit(function (e) {-->
+<!--            e.preventDefault();-->
+<!--            $.ajax({-->
+<!--                url:"/board/freeTalkInsert.php",-->
+<!--                method:'post',-->
+<!--                processData: false,-->
+<!--                contentType:false,-->
+<!--                cache:false,-->
+<!--                data: new FormData(this),-->
+<!--                success:function (response) {-->
+<!--                    $("#result").html(response);-->
+<!--                    load_images();-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+
+<!--        load_images();-->
+<!--        //이미지 로드-->
+<!--        function  load_images() {-->
+<!--            $.ajax({-->
+<!--                url: '/board/freeTalkRead.php',-->
+<!--                method: 'get',-->
+<!--                success: function (data) {-->
+<!--                    $("#image_preview").html(data);-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+
+<!--    });-->
+<!--</script>-->
+
+
 </body>
 
 
