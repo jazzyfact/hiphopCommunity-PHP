@@ -3,7 +3,7 @@
     if (isset($_POST['getData'])) {
         $conn = new mysqli('', '', '');
 
-        $result = mysqli_select_db($conn,"hiphop");
+        $result = mysqli_select_db($conn,"");
 
         $start = $conn->real_escape_string($_POST['start']);
         $limit = $conn->real_escape_string($_POST['limit']);
