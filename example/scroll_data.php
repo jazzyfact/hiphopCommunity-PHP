@@ -1,7 +1,7 @@
 <?php
 
     if (isset($_POST['getData'])) {
-        $conn = new mysqli('127.0.0.1', 'hyemi', 'dltpstmRkdalsgh!!');
+        $conn = new mysqli('', '', '');
 
         $result = mysqli_select_db($conn,"hiphop");
 
