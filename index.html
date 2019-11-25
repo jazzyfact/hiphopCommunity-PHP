@@ -412,6 +412,22 @@ ini_set("display_errors", 1);
 
 </script>
 
+<script type="text/javascript">
+    window.onload = function(){
+        var count = localStorage.getItem("visit");
+        if(count==null){
+            localStorage.setItem("visit",1);
+
+        }else{
+
+            count++;
+            localStorage.setItem("visit",count);
+        }
+    };
+</script>
+
+
+
 
 </body>
 

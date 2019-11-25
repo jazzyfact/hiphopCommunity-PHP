@@ -94,7 +94,11 @@ ini_set("display_errors", 1);
                     <br>
                     <tr>
 
-                        <td><textarea name="content" rows="20" cols="90" placeholder="내용"></textarea></td>
+                        <td><textarea name="content" id="auto" rows="20" cols="90" placeholder="내용"></textarea></td>
+<!--                      <script>-->
+<!--                        localStorage.setItem('content', '');-->
+<!--                        localStorage.getItem("content");-->
+<!--                      </script>-->
                     </tr>
 
                     <input type="file" name="image" id="image" class="form-control" required="" accept="*/image" multiple>
@@ -200,7 +204,7 @@ include "../include/footer.html";
                 success:function (response) {
                     $("#result").html(response);
                     // load_images();
-                    
+
                     window.alert('글이 정상적으로 등록되었습니다!');
                     location.href='../php/freeTalk.php';
                 }
@@ -222,6 +226,51 @@ include "../include/footer.html";
     });
 </script>
 
+<!--게시글 10초마다 sessionStroage에 자동 저장-->
+<script>
+
+    (function () {
+        var autoSave = {};
+        (function (obj) {
+            obj.configuration = {
+                interval: 10 // second(s)
+            };
+            obj.bindTimer = function() {
+                var textEle = document.querySelector('#auto');
+                var textVal = textEle.value;
+                var ref1, ref2, ref3; // Newer -&gt; Older
+
+                // Save to localStorage
+                // 게시글에 입력한 문자를 Base64로 인코딩 해줌
+                //utf-8 인 경우 btoa(unescape(encodeURIComponent(textVal)) 이런 식으로 인코딩해줘야 한다
+                //최대 3개까지 세션스토리지에 자동 저장 된다
+                var encodedTextVal = btoa(unescape(encodeURIComponent(textVal)));
+                ref1 = window.sessionStorage.getItem('textval-01');
+                ref2 = window.sessionStorage.getItem('textval-02');
+
+                if ((window.sessionStorage) && (encodedTextVal != ref1)){
+                    window.sessionStorage.setItem('textval-01', encodedTextVal);
+                    window.sessionStorage.setItem('textval-02', ref1);
+                    window.sessionStorage.setItem('textval-03', ref2);
+                }
+                else if (!window.sessionStorage) {
+                    console.log('Error' + ': Your browser not support');
+                    return false;
+                }
+            };
+
+            obj.start = function() {
+                obj.bindTimer();
+                setTimeout(function() {
+                    obj.start();
+                }, obj.configuration.interval * 1000);
+            };
+            obj.start();
+        })(autoSave);
+    })();
+
+
+</script>
 
 </body>
 
