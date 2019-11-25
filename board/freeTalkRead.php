@@ -1,7 +1,7 @@
 <?php
 include "../include/header.html";
 include "../../pdo_db.php";
-//include "../../mysqli_db.php";
+include "../../mysqli_db.php";
 $pdo = connect();
 
 
@@ -11,11 +11,6 @@ $read_stt = $pdo->prepare($read_sql);
 $read_stt->execute();
 $read_row = $read_stt->fetch();
 
-// 1. bno의 값을 지정하여 보내주는 sql문
-$free_talk_num_sql = "select * from free_talk where idx = {$_GET['idx']}";
-$free_talk_num_stt=$pdo->prepare($free_talk_num_sql);
-$free_talk_num_stt->execute();
-$free_talk_num_row=$free_talk_num_stt->fetch();
 
 
 
@@ -58,6 +53,20 @@ ini_set("display_errors", 1);
     <!--            font-size: 20px;-->
     <!--        }-->
     <!--    </style>-->
+    <style>
+        .reply { margin: 32px 0; background-color: #d8f3ff; }
+        .reply .reply-component { padding: 8px 24px 48px 24px; }
+        .reply .reply-component .reply-form .reply-info { display:flex; justify-content: flex-start; align-items : center; padding: 8px 0; font-size: 12px; }
+        .reply .reply-component .reply-form .reply-info .rcol { margin-right: 16px; }
+        .reply .reply-component .reply-form .reply-info .inline { display: inline-block; }
+        .reply .reply-component .reply-form .reply-info .inline i {font-size: 23px; }
+        .reply .reply-component .reply-form .reply-info .reply-control { width: 130px; position: relative; }
+        .reply .reply-component .reply-form .reply-info .reply-control input { width: 100%; padding: 3px 5px; border: 0; outline: 0; background-color: #d8f3ff }
+        .reply .reply-component .reply-form .reply-info .reply-control:after { content: ""; position: absolute; left: 0; bottom: -2px; height: 1px; width: 100%; background: #000; }
+        .reply .reply-component .reply-form textarea { resize: none; height: 75px; }
+
+
+    </style>
 
 </head>
 
@@ -182,53 +191,31 @@ ini_set("display_errors", 1);
 
 
 
+                <div class="reply">
 
-<!--                <form action="comment_insert.php" method="post">-->
-<!--                    <input type="hidden" name="bno" value="--><?//=$bno_row['num']?><!--">-->
-<!--                    <textarea name="content" rows="8" cols="80"></textarea>-->
-<!--                    <input type="submit" value="댓글쓰기">-->
-<!--                </form>-->
+                    <!-- 나중에 댓글 리스트가 들어올 자리 -->
+
+                    <div class="reply-component">
+                        <form class="reply-form" id="reply-form">
+                            <div class="reply-info" >
 
 
-
-                <div class="reply_view">
-                    <h3>댓글목록</h3>
-<!--                    --><?php
-//                    $sql3 = mq("select * from free_talk_reply where free_talk_num='".$idx."' order by reply_idx desc");
-//                    while($reply = $sql3->fetch_array()){
-//                        ?>
-<!--                        <div class="dap_lo">-->
-<!--                            <div><b>--><?php //echo $reply['name'];?><!--</b></div>-->
-<!--                            <div class="dap_to comt_edit">--><?php //echo nl2br("$reply[content]"); ?><!--</div>-->
-<!--                            <div class="rep_me dap_to">--><?php //echo $reply['date']; ?><!--</div>-->
-<!--                            <div class="rep_me rep_menu">-->
-<!--                                <a class="dat_edit_bt" href="#">수정</a>-->
-<!--                                <a class="dat_delete_bt" href="#">삭제</a>-->
-<!--                            </div>-->
-<!--                            <!-- 댓글 수정 폼 dialog -->-->
-<!--                            <div class="dat_edit">-->
-<!--                                <form method="post" action="rep_modify_ok.php">-->
-<!--                                    <input type="hidden" name="rno" value="--><?php //echo $reply['idx']; ?><!--" /><input type="hidden" name="b_no" value="--><?php //echo $idx; ?><!--">-->
-<!---->
-<!--                                    <textarea name="content" class="dap_edit_t">--><?php //echo $reply['content']; ?><!--</textarea>-->
-<!--                                    <input type="submit" value="수정하기" class="re_mo_bt">-->
-<!--                                </form>-->
-<!--                            </div>-->
-<!---->
-<!--                        </div>-->
-<!--                    --><?php //} ?>
-
-                    <!--- 댓글 입력 폼 -->
-                    <div class="dap_ins">
-                        <input type="hidden" name="bno" class="bno" value="<?php echo $idx; ?>">
-
-                        <div style="margin-top:10px; ">
-                            <textarea name="content" class="reply_content" id="re_content" ></textarea>
-                            <button id="rep_bt" class="re_bt">댓글</button>
-                        </div>
+                            </div>
+                            <textarea class="form-control reply-textarea" name="contents" placeholder="댓글을 작성해주세요." required></textarea>
+                            <input type="hidden" name="reply" id="reply" value="<?=$uid?>" />
+                            <div style="margin-top: 8px">
+                                <button type="submit" class="right btn btn-primary" id="reply-btn">댓글등록</button>
+                            </div>
+                        </form>
                     </div>
 
-                </div><!--- 댓글 불러오기 끝 -->
+                </div>
+
+
+
+
+
+
 
 
 
@@ -269,8 +256,142 @@ include "../include/footer.html";
 
 <script type="text/javascript" src="../js/common.js"></script>
 
+<!--댓글-->
+<!--    <script type="text/javascript">-->
+<!--        $(document).ready(function () {-->
+<!--            // $("#image").on('change', function () {-->
+<!--            //     var filename = $(this).val();-->
+<!--            //     $(".custom-file-label").html(filename);-->
+<!--            // });-->
+<!--            $("#comment_write").submit(function (e) {-->
+<!--                e.preventDefault();-->
+<!--                $.ajax({-->
+<!--                    url: "free_comment_insert.php",-->
+<!--                    method: 'post',-->
+<!--                    processData: false,-->
+<!--                    contentType: false,-->
+<!--                    cache: false,-->
+<!--                    data: new FormData(this),-->
+<!--                    success: function (response) {-->
+<!--                        $("#result").html(response);-->
+<!--                        // load_images();-->
+<!---->
+<!--                        window.alert('댓글이 정상적으로 등록되었습니다!');-->
+<!--                        location.href = 'freeTalkRead.php';-->
+<!--                    }-->
+<!--                });-->
+<!--            });-->
+<!--        });-->
+<!--</script>-->
+
+
+<!--댓글-->
+<script>
+    $(document).ready(function () {
+
+        // get_replyServer(); 나중에 댓글리스트를 비동기로 가져올 작업을 하는 함수
+
+        $("#reply-form").on("submit", function (e) {
+            e.preventDefault();
+
+            var me = $(this);  // form 자신
+            var data = {
+                name: me[0].name.value, // 이름
+                passwd : me[0].passwd.value, // 비번
+                contents : me[0].contents.value, // 내용
+                reply : me[0].reply.value, // 본문번호 == $uid == DB::reply
+            }
+
+            var requestData = {
+                url : "replyDo.php",
+                method : "POST",
+                data : data
+            }
+
+            replyServer(requestData);
+        })
+    });
+  </script>
+
+<script>
+    function replyServer (param) {
+
+        if (typeof param != "object") {
+            console.error("Parameter type only Object !!");
+            return false;
+        }
+
+        $.ajax({
+            url : param.url,
+            method : param.method,
+            data : param.data,
+            beforeSend : function () {
+                $("#reply-btn").attr("disabled", true);
+            },
+            success : function (data) {
+                // 서버에서 응답한 데이터가 매개변수인 data 로 넘어온다.
+                $("#reply-btn").attr("disabled", false);
+            },
+            error : function (err) {
+                console.log(err)
+            }
+        });
+    }
+
+
+
+</script>
 
 </body>
 
 
 </html>
+
+<?php
+// 댓글들을 출력
+$comment_sql = "select * from free_talk_reply where free_number = {$_GET['idx']}";
+$comment_stt=$pdo->prepare($comment_sql);
+$comment_stt->execute();
+// $_SESSION['id']를 존재 유무에 따른 정보 정리
+if(!isset($_SESSION['email']))
+{
+    $id = 'guest';
+}
+else
+{
+    $id=$_SESSION['email'];
+}
+// 삭제와 수정의 권한
+$level_sql = "select * from register_board where email = '$email'";
+$level_stt=$pdo->prepare($level_sql);
+$level_stt->execute();
+$level_row=$level_stt->fetch();
+if(!isset($level_row['level']))
+{
+    $level_row['level']=2;
+}
+while($comment_row=$comment_stt->fetch())
+{
+    echo "<table>
+      <tr>
+        <td>글쓴이</td>
+        <td>{$comment_row['name']}</td>
+      </tr>
+      <tr>
+        <td>내용</td>
+        <td>{$comment_row['content']}</td>
+      </tr>
+      <tr>
+        <td>날짜</td>
+        <td>{$comment_row['date']}</td>
+      </tr>";
+    if($id==$comment_row['name'] || $level_row['level']==0)
+    {
+        echo "<tr>
+                <td><a href='screen_comment_edit.php?idx={$_GET['idx']}&no={$comment_row['idx']}&content={$comment_row['content']}'>수정</a></td>
+                <td><a href='screen_comment_del.php?idx={$_GET['idx']}&no={$comment_row['idx']}'>삭제</a></td>
+              </tr>";
+    }
+    echo "</table>";
+}
+?>
