@@ -35,7 +35,7 @@ if (!isset($_SESSION['email'])) {
 
 
 // 게시판 글을 입력하는 문
-    $insert_sql = $pdo->prepare("insert into pic_board (title, name, content) VALUES (:title, :name, :content)");
+    $insert_sql = $pdo->prepare("insert into albums_board (title, name, content) VALUES (:title, :name, :content)");
     $insert_sql->bindValue(':name', $_SESSION['email']);
     $insert_sql->bindValue(':title', $_POST['title']);
     $insert_sql->bindValue(':content', $_POST['content']);
