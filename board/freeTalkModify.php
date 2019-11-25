@@ -91,7 +91,7 @@ ini_set("display_errors", 1);
             <div class="col-12 col-lg-9"  style="margin-left: 300px ">
 
 
-                <div class="11" style="text-align: center">
+                <div class="11" style="text-align: justify-all">
                 <form action="../board/freeTalkUpdate.php?idx=<?= $_GET['idx'] ?>" method="post"  enctype="multipart/form-data" id="image_upload">
                     <!--        <form action="/page/board/update.php-->
                     <?php //echo edit_row['idx']; ?><!--" method="post">-->
@@ -106,9 +106,11 @@ ini_set("display_errors", 1);
                             <td><textarea  name="content" rows="8" cols="80"><?= $edit_row['content'] ?></textarea></td>
                         </tr>
                         <br><br>
-                        <img src="../uploads/<?= $edit_row['image'] ?>"><br><br>
-                        <input type="file" name="image" class="form-control" required="" accept="*/image">
+
                     </table>
+                    <img src="../uploads/<?= $edit_row['image'] ?>" style="width: 500px; height: 500px; text-align: left"><br><br>
+                    <input type="file" name="image" class="form-control" required="" accept="*/image" style="width: 500px;">
+
                     <br>
 
                     <input type="submit" value="Modify" class="btn oneMusic-btn-custom mt-5" style="text-align: center">
