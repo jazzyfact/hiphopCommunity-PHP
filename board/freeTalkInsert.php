@@ -33,15 +33,15 @@ if (!isset($_SESSION['email'])) {
 } else {
 
 
-    $images=$_FILES['image']['name'];
-    $tmp_dir=$_FILES['image']['tmp_name'];
-    $imageSize=$_FILES['image']['size'];
+    $images = $_FILES['image']['name'];
+    $tmp_dir = $_FILES['image']['tmp_name'];
+    $imageSize = $_FILES['image']['size'];
 
-    $upload_dir='../uploads/';
-    $imgExt=strtolower(pathinfo($images,PATHINFO_EXTENSION));
-    $valid_extensions=array('jpeg', 'jpg', 'png', 'gif', 'pdf');
-    $image=rand(1000, 1000000).".".$imgExt;
-    move_uploaded_file($tmp_dir, $upload_dir.$image);
+    $upload_dir = '../uploads/';
+    $imgExt = strtolower(pathinfo($images, PATHINFO_EXTENSION));
+    $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'pdf');
+    $image = rand(1000, 1000000) . "." . $imgExt;
+    move_uploaded_file($tmp_dir, $upload_dir . $image);
 
 
 // 게시판 글을 입력하는 문
@@ -52,18 +52,13 @@ if (!isset($_SESSION['email'])) {
     $insert_sql->bindValue(':image', $image);
     $insert_sql->execute();
 
-//mysql 에러 출력구문
-//    echo "\nPDOStatement::errorInfo()";
-//    $arr = $insert_sql->errorInfo();
-//    print_r($arr);
+
     echo
     "<script>
     window.alert('글이 정상적으로 등록되었습니다!');
-
-    //            location.href='error.php';
-
-
     location.href='../php/freeTalk.php';
+    //            location.href='error.php';
+  
 </script>";
 }
 
@@ -71,6 +66,12 @@ if (!isset($_SESSION['email'])) {
 //php 에러 출력 부분
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+
+//mysql 에러 출력구문
+//    echo "\nPDOStatement::errorInfo()";
+//    $arr = $insert_sql->errorInfo();
+//    print_r($arr);
+
 
 //
 //$conn = new mysqli("127.0.0.1", "hyemi", "dltpstmRkdalsgh!!", "hiphop");

@@ -1,6 +1,7 @@
 <?php
 include "../include/header.html";
 include "../../pdo_db.php";
+//include "../../mysqli_db.php";
 $pdo = connect();
 
 
@@ -9,6 +10,12 @@ $read_sql = "select * from free_talk where idx = {$_GET['idx']}";
 $read_stt = $pdo->prepare($read_sql);
 $read_stt->execute();
 $read_row = $read_stt->fetch();
+
+// 1. bno의 값을 지정하여 보내주는 sql문
+$free_talk_num_sql = "select * from free_talk where idx = {$_GET['idx']}";
+$free_talk_num_stt=$pdo->prepare($free_talk_num_sql);
+$free_talk_num_stt->execute();
+$free_talk_num_row=$free_talk_num_stt->fetch();
 
 
 
@@ -176,6 +183,56 @@ ini_set("display_errors", 1);
 
 
 
+<!--                <form action="comment_insert.php" method="post">-->
+<!--                    <input type="hidden" name="bno" value="--><?//=$bno_row['num']?><!--">-->
+<!--                    <textarea name="content" rows="8" cols="80"></textarea>-->
+<!--                    <input type="submit" value="댓글쓰기">-->
+<!--                </form>-->
+
+
+
+                <div class="reply_view">
+                    <h3>댓글목록</h3>
+<!--                    --><?php
+//                    $sql3 = mq("select * from free_talk_reply where free_talk_num='".$idx."' order by reply_idx desc");
+//                    while($reply = $sql3->fetch_array()){
+//                        ?>
+<!--                        <div class="dap_lo">-->
+<!--                            <div><b>--><?php //echo $reply['name'];?><!--</b></div>-->
+<!--                            <div class="dap_to comt_edit">--><?php //echo nl2br("$reply[content]"); ?><!--</div>-->
+<!--                            <div class="rep_me dap_to">--><?php //echo $reply['date']; ?><!--</div>-->
+<!--                            <div class="rep_me rep_menu">-->
+<!--                                <a class="dat_edit_bt" href="#">수정</a>-->
+<!--                                <a class="dat_delete_bt" href="#">삭제</a>-->
+<!--                            </div>-->
+<!--                            <!-- 댓글 수정 폼 dialog -->-->
+<!--                            <div class="dat_edit">-->
+<!--                                <form method="post" action="rep_modify_ok.php">-->
+<!--                                    <input type="hidden" name="rno" value="--><?php //echo $reply['idx']; ?><!--" /><input type="hidden" name="b_no" value="--><?php //echo $idx; ?><!--">-->
+<!---->
+<!--                                    <textarea name="content" class="dap_edit_t">--><?php //echo $reply['content']; ?><!--</textarea>-->
+<!--                                    <input type="submit" value="수정하기" class="re_mo_bt">-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!---->
+<!--                        </div>-->
+<!--                    --><?php //} ?>
+
+                    <!--- 댓글 입력 폼 -->
+                    <div class="dap_ins">
+                        <input type="hidden" name="bno" class="bno" value="<?php echo $idx; ?>">
+
+                        <div style="margin-top:10px; ">
+                            <textarea name="content" class="reply_content" id="re_content" ></textarea>
+                            <button id="rep_bt" class="re_bt">댓글</button>
+                        </div>
+                    </div>
+
+                </div><!--- 댓글 불러오기 끝 -->
+
+
+
+
 
             </div>
         </div>
@@ -209,6 +266,10 @@ include "../include/footer.html";
 <script src="../js/plugins/plugins.js"></script>
 <!-- Active js -->
 <script src="../js/active.js"></script>
+
+<script type="text/javascript" src="../js/common.js"></script>
+
+
 </body>
 
 
