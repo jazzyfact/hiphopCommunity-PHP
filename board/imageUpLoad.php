@@ -1,6 +1,6 @@
 <?php
 // 업로드 될 디렉토리 (권한 777)
-$uploads_dir = 'upload';
+$uploads_dir = '../uploads';
 // 한 번에 업로드할 수 있는 이미지 최대 수
 $imgMaxN = 10;
 // 허용할 이미지 하나의 최대 크기(MB)

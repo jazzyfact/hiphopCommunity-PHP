@@ -1,5 +1,5 @@
 <?php
-include "../include/header.html";
+
 include "../../pdo_db.php";
 
 
@@ -34,7 +34,8 @@ ini_set("display_errors", 1);
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Hi Esens</title>
+    <title>Always Hiphop</title>
+
 
     <!-- Favicon -->
     <link rel="icon" href="../img/core-img/favicon.ico">
@@ -46,21 +47,15 @@ ini_set("display_errors", 1);
 <!--    <link href="../css/bootstrap.min.css" rel="stylesheet">-->
     <link href="../css/dataTables.bootstrap.min.css" rel="stylesheet">
 
-    <!--버튼css-->
-<!--        <link rel="stylesheet" type="text/css" href="../css/button.css"/>-->
 
-<!--    <style>-->
-<!---->
-<!--        #mydata {-->
-<!--            text-align: center;-->
-<!--            font-family: 'Do Hyeon', sans-serif;-->
-<!--            font-size: 20px;-->
-<!--        }-->
-<!--    </style>-->
+
 
 </head>
 
 <body>
+<!--구글 애널리틱스 방문자 추적 코드 파일-->
+
+
 <!-- Preloader -->
 <div class="preloader d-flex align-items-center justify-content-center">
     <div class="lds-ellipsis">
@@ -72,7 +67,7 @@ ini_set("display_errors", 1);
 </div>
 
 <!-- ##### Header Area Start ##### -->
-
+<?php include "../include/header.html";?>
 
 <!-- ##### Header Area End ##### -->
 
@@ -221,7 +216,10 @@ include "../include/footer.html";
 <!-- Active js -->
 <script src="../js/active.js"></script>
 
-$('#mydata').dataTable();
+<script>
+    $('#mydata').dataTable();
+</script>
+
 </body>
 
 

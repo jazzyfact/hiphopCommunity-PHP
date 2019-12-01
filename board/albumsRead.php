@@ -1,7 +1,7 @@
 <?php
 include "../include/header.html";
 include "../../pdo_db.php";
-include "../../mysqli_db.php";
+//include "../../mysqli_db.php";
 $pdo = connect();
 
 
@@ -120,7 +120,7 @@ ini_set("display_errors", 1);
                     }
 
                     // 2. 리스트 테이블에서 이전과 다음으로 넘어가기 위해 num를 순서대로 출력하는 sql문
-                    $back_sql = "select * from free_talk where idx < {$_GET['idx']} order by idx desc";
+                    $back_sql = "select * from albums_board where idx < {$_GET['idx']} order by idx desc";
                     $back_stt = $pdo->prepare($back_sql);
                     $back_stt->execute();
                     $back_row = $back_stt->fetch();
@@ -131,7 +131,7 @@ ini_set("display_errors", 1);
                     } else {
                         echo "[◀ 이전]";
                     }
-                    $next_sql = "select * from free_talk where idx > {$_GET['idx']}";
+                    $next_sql = "select * from albums_board where idx > {$_GET['idx']}";
                     $next_stt = $pdo->prepare($next_sql);
                     $next_stt->execute();
                     $next_row = $next_stt->fetch();
@@ -333,50 +333,50 @@ ini_set("display_errors", 1);
     </html>
 
 <?php
-// 댓글들을 출력
-$comment_sql = "select * from free_talk_reply where free_number = {$_GET['idx']}";
-$comment_stt=$pdo->prepare($comment_sql);
-$comment_stt->execute();
-// $_SESSION['id']를 존재 유무에 따른 정보 정리
-if(!isset($_SESSION['email']))
-{
-    $id = 'guest';
-}
-else
-{
-    $id=$_SESSION['email'];
-}
-// 삭제와 수정의 권한
-$level_sql = "select * from register_board where email = '$email'";
-$level_stt=$pdo->prepare($level_sql);
-$level_stt->execute();
-$level_row=$level_stt->fetch();
-if(!isset($level_row['level']))
-{
-    $level_row['level']=2;
-}
-while($comment_row=$comment_stt->fetch())
-{
-    echo "<table>
-      <tr>
-        <td>글쓴이</td>
-        <td>{$comment_row['name']}</td>
-      </tr>
-      <tr>
-        <td>내용</td>
-        <td>{$comment_row['content']}</td>
-      </tr>
-      <tr>
-        <td>날짜</td>
-        <td>{$comment_row['date']}</td>
-      </tr>";
-    if($id==$comment_row['name'] || $level_row['level']==0)
-    {
-        echo "<tr>
-                <td><a href='screen_comment_edit.php?idx={$_GET['idx']}&no={$comment_row['idx']}&content={$comment_row['content']}'>수정</a></td>
-                <td><a href='screen_comment_del.php?idx={$_GET['idx']}&no={$comment_row['idx']}'>삭제</a></td>
-              </tr>";
-    }
-    echo "</table>";
-}
-?>
+//// 댓글들을 출력
+//$comment_sql = "select * from free_talk_reply where free_number = {$_GET['idx']}";
+//$comment_stt=$pdo->prepare($comment_sql);
+//$comment_stt->execute();
+//// $_SESSION['id']를 존재 유무에 따른 정보 정리
+//if(!isset($_SESSION['email']))
+//{
+//    $id = 'guest';
+//}
+//else
+//{
+//    $id=$_SESSION['email'];
+//}
+//// 삭제와 수정의 권한
+//$level_sql = "select * from register_board where email = '$email'";
+//$level_stt=$pdo->prepare($level_sql);
+//$level_stt->execute();
+//$level_row=$level_stt->fetch();
+//if(!isset($level_row['level']))
+//{
+//    $level_row['level']=2;
+//}
+//while($comment_row=$comment_stt->fetch())
+//{
+//    echo "<table>
+//      <tr>
+//        <td>글쓴이</td>
+//        <td>{$comment_row['name']}</td>
+//      </tr>
+//      <tr>
+//        <td>내용</td>
+//        <td>{$comment_row['content']}</td>
+//      </tr>
+//      <tr>
+//        <td>날짜</td>
+//        <td>{$comment_row['date']}</td>
+//      </tr>";
+//    if($id==$comment_row['name'] || $level_row['level']==0)
+//    {
+//        echo "<tr>
+//                <td><a href='screen_comment_edit.php?idx={$_GET['idx']}&no={$comment_row['idx']}&content={$comment_row['content']}'>수정</a></td>
+//                <td><a href='screen_comment_del.php?idx={$_GET['idx']}&no={$comment_row['idx']}'>삭제</a></td>
+//              </tr>";
+//    }
+//    echo "</table>";
+//}
+//?>

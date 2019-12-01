@@ -1,7 +1,11 @@
 <?php
-include "../include/header.html";
-include "../../pdo_db.php";
-$dbo = connect();
+include '../../pdo_db.php';
+
+
+
+
+
+$pdo = connect();
 // 페이징에 필요한 변수 11개
 // $_GET['page'], $list_size, $page_size, $first
 // $total_list, $total_page, $row
@@ -14,7 +18,7 @@ $page_size = 5;
 $first = ($_GET['page'] * $list_size) - $list_size;
 // 1. 리스트에 출력하기 위한 sql문
 $list_sql = "select * from albums_board order by idx desc limit $first, $list_size";
-$list_stt = $dbo->prepare($list_sql);
+$list_stt = $pdo->prepare($list_sql);
 $list_stt->execute();
 
 
@@ -31,7 +35,7 @@ $list_stt->execute();
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Hi Esens</title>
+    <title>Always Hiphop</title>
 
     <!-- Favicon -->
     <link rel="icon" href="../img/core-img/favicon.ico">
@@ -39,10 +43,11 @@ $list_stt->execute();
     <!-- Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
 
-
 </head>
 
 <body>
+
+
 <!-- Preloader -->
 <div class="preloader d-flex align-items-center justify-content-center">
     <div class="lds-ellipsis">
@@ -55,7 +60,7 @@ $list_stt->execute();
 
 <!-- ##### Header Area Start ##### -->
 
-
+<?php include "../include/header.html";?>
 <!-- ##### Header Area End ##### -->
 
 <!-- ##### Breadcumb Area Start ##### -->
@@ -64,12 +69,14 @@ $list_stt->execute();
 
   
         <h2>Albums</h2>
-        <button type="button" class="btn oneMusic-btn mt-5">글쓰기</button>
+
+        <button type="button"  class="btn oneMusic-btn mt-5" onclick="location.href='../board/albumsWrite.html'">글쓰기</button>
     </div>
 </section>
 <!-- ##### Breadcumb Area End ##### -->
 
 <!-- ##### Album Catagory Area Start ##### -->
+
 <section class="album-catagory section-padding-100-0">
 
     <div class="container">
@@ -132,8 +139,13 @@ $list_stt->execute();
 
                 <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item t c p">
                     <div class="single-album">
-                        <?= $list_row['content'] ?><br>
+
+
+                        <a href='../board/albumsRead.php?idx=<?= $list_row['idx'] ?>'><?= $list_row['idx'] ?>
+                        <?= $list_row['content'] ?>
+                            <br>
                         <div class="album-info">
+
                             <?= $list_row['date'] ?><br>
                             <?= $list_row['title'] ?><br><br>
                            <?echo "작성자 :"?><?= $list_row['name'] ?>
@@ -148,7 +160,7 @@ $list_stt->execute();
             echo "</table>";
             // 2. 총 페이지를 구하기 위한 sql문
             $total_sql = "select count(*) from albums_board";
-            $total_stt = $dbo->prepare($total_sql);
+            $total_stt = $pdo->prepare($total_sql);
             $total_stt->execute();
             $total_row = $total_stt->fetch();
             $total_list = $total_row['count(*)'];
@@ -447,6 +459,7 @@ $list_stt->execute();
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
+
 <!-- ##### Buy Now Area End ##### -->
 
 <!-- ##### Add Area Start ##### -->
@@ -461,9 +474,7 @@ $list_stt->execute();
 
 <!-- ##### Footer Area Start ##### -->
 
-<?php
-include "../include/footer.html";
-?>
+<?php include '../include/footer.html'; ?>
 <!-- ##### Footer Area Start ##### -->
 
 <!-- ##### All Javascript Script ##### -->
