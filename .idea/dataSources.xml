@@ -16,9 +16,10 @@
         <property name="serverTimezone" value="UTC" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="awsUbuntu18.04LTSHiphop" uuid="b3927c34-bc44-445d-a90c-939b9f18a16f">
+    <data-source source="LOCAL" name="awsUbuntu18.04HiphopPHP" uuid="fbed8e31-07ae-4a57-b69e-f7dfc7f87b08">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
+      <remarks>기초php 힙합커뮤니티 aws mysql</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://13.125.20.220:3306/hiphop</jdbc-url>
       <driver-properties>

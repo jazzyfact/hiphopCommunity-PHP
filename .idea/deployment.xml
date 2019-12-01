@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="Ubnutu18.04LTS.기초PHP">
+  <component name="PublishConfigData" serverName="awsUbuntu18.04.php">
     <serverData>
       <paths name="Ubnutu18.04LTS.기초PHP">
         <serverdata>
           <mappings>
             <mapping deploy="/usr/local/apapche/htdocs" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="awsUbuntu18.04.php">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
