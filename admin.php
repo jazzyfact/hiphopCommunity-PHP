@@ -23,9 +23,34 @@ $country_stmt = $pdo->prepare($country_sql);
 $country_stmt->execute();
 $country_arr = $country_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-echo "\nPDOStatement::errorInfo()";
-$arr = $country_stmt->errorInfo();
-print_r($arr);
+//요일별 방문자 수
+
+$dayofweek_sql = "SELECT count(dayofweek) as count,dayofweek from visitor_info group by dayofweek";
+$dayofweek_stmt = $pdo->prepare($dayofweek_sql);
+$dayofweek_stmt->execute();
+$dayofweek_arr = $dayofweek_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+//총 방문자수
+
+$total_sql = "SELECT count(*)from visitor_info ";
+$total_stmt = $pdo->prepare($total_sql);
+$total_stmt->execute();
+$total_arr = $total_stmt->fetchAll(PDO::FETCH_ASSOC);
+echo print_r($total_arr);;
+
+//지도 차트
+//$geo_sql = "SELECT count(dayofweek) as count,dayofweek from visitor_info group by dayofweek";
+//$dayofweek_stmt = $pdo->prepare($dayofweek_sql);
+//$dayofweek_stmt->execute();
+//$dayofweek_arr = $dayofweek_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+
+//echo "\nPDOStatement::errorInfo()";
+//$arr = $country_stmt->errorInfo();
+//print_r($arr);
 ?>
 <html>
 <head>
@@ -36,6 +61,9 @@ print_r($arr);
         google.charts.setOnLoadCallback(drawBrowserChart);
         google.charts.setOnLoadCallback(drawOsChart);
         google.charts.setOnLoadCallback(drawCountryChart);
+        google.charts.setOnLoadCallback(drawDateTimeChart);
+        google.charts.setOnLoadCallback(drawVisiterTotalChart);
+
 
         //방문자 사용한 브라우저 종류 나타내는 차트
         function drawBrowserChart() {
@@ -46,10 +74,18 @@ print_r($arr);
                 <?php } ?>
             ]);
             var options = {
-                title: 'browser Count',
-                is3D: true
+                title: '접속한 브라우저',
+                legend: { position: 'bottom' },
+                series: {
+                    0: { color: '#a561bd' },
+                    1: { color: '#c784de' },
+                    2: { color: '#f1ca3a' },
+                    3: { color: '#2980b9' },
+                    4: { color: '#e67e22' }
+                }
             };
-            var chart = new google.visualization.PieChart(document.getElementById('pieBrowserChart'));
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('pieBrowserChart'));
             chart.draw(data, options);
         }
 
@@ -80,14 +116,53 @@ print_r($arr);
             );
             var barchartOptions = {
                 title: 'Country Count',
-                legend: 'none'
+                series: {
+                    0: { color: '#a561bd' },
+                    1: { color: '#c784de' },
+                    2: { color: '#f1ca3a' },
+                    3: { color: '#2980b9' },
+                    4: { color: '#e67e22' }
+                }
             };
 
-            var barchart = new google.visualization.BarChart(document.getElementById('barCountryChart'));
+            var barchart = new google.visualization.GeoChart(document.getElementById('geoCountryChart'));
+            barchart.draw(data, barchartOptions);
+
+            var barchart = new google.visualization.PieChart(document.getElementById('barCountryChart'));
+            barchart.draw(data, barchartOptions);
+
+        }
+
+
+        //방문한 사용자가 요일을 표시하는 차트
+        function drawDateTimeChart() {
+            var data = google.visualization.arrayToDataTable([
+                    ['dayofweek', 'Count'],
+                    <?php foreach($dayofweek_arr as $key=>$val){?>
+                    ['<?php echo $val['dayofweek']?>', <?php echo $val['count']?>],
+                    <?php } ?>
+                ]
+            );
+            var barchartOptions = {
+                title: 'date Count',
+                width: 600,
+                height: 400,
+                bar: {groupWidth: "95%"},
+                legend: { position: "none" },
+            };
+
+            var barchart = new google.visualization.ColumnChart(document.getElementById('barDateTimeChart'));
             barchart.draw(data, barchartOptions);
 
 
         }
+
+
+
+
+
+
+
 
 
     </script>
@@ -100,5 +175,17 @@ print_r($arr);
 
 <!--나라 막대기 차트-->
 <div id="barCountryChart" style="width: 500px; height: 400px;"></div>
+<!--나라 막대기 차트-->
+<div id="geoCountryChart" style="width: 500px; height: 400px;"></div>
+
+
+
+<!--날짜 시간별 차트-->
+<div id="barDateTimeChart" style="width: 500px; height: 400px;"></div>
+
+<!--총 방문자 차트-->
+<div id="total" style="width: 500px; height: 400px;"></div>
+
+
 </body>
 </html>
