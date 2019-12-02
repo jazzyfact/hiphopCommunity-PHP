@@ -31,8 +31,10 @@ ini_set("display_errors", 1);
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Hi Esens</title>
+    <title>Always Hiphop</title>
 
+
+    <!--ck에디터4.7.1-->
     <script src="../js/jquery-1.7.2.min.js"  type="text/javascript"></script>
     <!-- Favicon -->
     <link rel="icon" href="../img/core-img/favicon.ico">
@@ -40,21 +42,12 @@ ini_set("display_errors", 1);
     <!-- Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
 
+    <!---->
+    <link rel="stylesheet" href="../css/write.css">
+
     <!-- 부트스트랩 -->
     <!--    <link href="../css/bootstrap.min.css" rel="stylesheet">-->
     <link href="../css/dataTables.bootstrap.min.css" rel="stylesheet">
-
-    <!--버튼css-->
-    <!--        <link rel="stylesheet" type="text/css" href="../css/button.css"/>-->
-
-    <!--    <style>-->
-    <!---->
-    <!--        #mydata {-->
-    <!--            text-align: center;-->
-    <!--            font-family: 'Do Hyeon', sans-serif;-->
-    <!--            font-size: 20px;-->
-    <!--        }-->
-    <!--    </style>-->
 
 </head>
 
@@ -69,35 +62,32 @@ ini_set("display_errors", 1);
     </div>
 </div>
 
-<!-- ##### Header Area Start ##### -->
-
-
-<!-- ##### Header Area End ##### -->
 
 
 <!-- ##### Breadcumb Area Start ##### -->
+<!--상단 배경화면-->
 <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../image/freeimage.jpg);">
     <div class="bradcumbContent">
 
-        <h2>Albums</h2>
+        <h2>Albums Modify</h2>
 
     </div>
 </section>
 <!-- ##### Breadcumb Area End ##### -->
 
 <!-- ##### Blog Area Start ##### -->
+<!---게시판 폼-->
 <div class="blog-area section-padding-100">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-9"  style="margin-left: 300px ">
+            <div class="col-12 col-lg-9"  style="margin-left: 100px ">
 
-
-                <div class="11" style="text-align: justify-all">
+<!--                <div class="11" style="text-align: justify-all">-->
                     <form action="../board/albumsUpdate.php?idx=<?= $_GET['idx'] ?>" method="post"  enctype="multipart/form-data" id="image_upload">
 
                             <input type="text" id="utitle" name="title"  size="70" rows="1" cols="90" maxlength="100"  value="<?= $edit_row['title'] ?>"/>
                             <textarea id="content" name="content"><?= $edit_row['content'] ?></textarea>
-                            <input type="submit" value="전송">
+                        <input type="submit" value="작성" class="btn oneMusic-btn mt-5" style="text-align: center">
                         </form>
 
                         <form id="img_upload_form" action="imageUpLoad.php" enctype="multipart/form-data" method="post" style="display:none;">
@@ -112,7 +102,8 @@ ini_set("display_errors", 1);
                             </div>
                         </div>
 
-
+                    <br>
+                    <br>
 
                 </div>
             </div>
@@ -131,7 +122,6 @@ ini_set("display_errors", 1);
 
 
     <!--ck에디터-->
-
     <script src="../js/jquery.form.min.js" type="text/javascript"></script>
     <script src="../js/ckeditor/ckeditor.js" type="text/javascript"></script>
     <script src="../js/ckeditor/adapters/jquery.js" type="text/javascript"></script>
@@ -158,11 +148,11 @@ ini_set("display_errors", 1);
     <!-- jQuery-2.2.4 js -->
 <!--    <script src="../js/jquery/jquery-2.2.4.min.js"></script>-->
     <!-- Popper js -->
-    <script src="../js/bootstrap/popper.min.js"></script>
+    <script src="../js/bootstrap/popper.min.js" type="text/javascript"></script>
     <!-- Bootstrap js -->
-    <script src="../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
     <!-- All Plugins js -->
-    <script src="../js/plugins/plugins.js"></script>
+    <script src="../js/plugins/plugins.js" type="text/javascript"></script>
     <!-- Active js -->
     <script src="../js/active.js"></script>
 </body>

@@ -173,6 +173,12 @@ include "../include/footer.html";
 
 
 <!-- ##### All Javascript Script ##### -->
+<!--alert대신 쓰는 sweettalert2 라이브러리-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
 <!-- jQuery-2.2.4 js -->
 <script src="../js/jquery/jquery-2.2.4.min.js"></script>
 <!-- Popper js -->
@@ -227,8 +233,11 @@ include "../include/footer.html";
                     $("#result").html(response);
                     // load_images();
 
-                    window.alert('글이 정상적으로 등록되었습니다!');
+
+
+                    // window.alert('글이 정상적으로 등록되었습니다!');
                     location.href='../php/freeTalk.php';
+                    //location.href='../php/freeTalk.php';
                 }
             });
         });

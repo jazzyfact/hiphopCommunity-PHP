@@ -55,8 +55,8 @@ if (!isset($_SESSION['email'])) {
 
     echo
     "<script>
-    window.alert('글이 정상적으로 등록되었습니다!');
-    location.href='../php/freeTalk.php';
+//    window.alert('글이 정상적으로 등록되었습니다!');
+//    location.href='../php/freeTalk.php';
     //            location.href='error.php';
   
 </script>";

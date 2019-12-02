@@ -1,7 +1,7 @@
 <?php
 include "../include/header.html";
 include "../../pdo_db.php";
-include "../../mysqli_db.php";
+//include "../../mysqli_db.php";
 $pdo = connect();
 
 
@@ -191,29 +191,20 @@ ini_set("display_errors", 1);
 
 
 
-                <div class="reply">
-
-                    <!-- 나중에 댓글 리스트가 들어올 자리 -->
-
-                    <div class="reply-component">
-                        <form class="reply-form" id="reply-form">
-                            <div class="reply-info" >
 
 
-                            </div>
-                            <textarea class="form-control reply-textarea" name="contents" placeholder="댓글을 작성해주세요." required></textarea>
-                            <input type="hidden" name="reply" id="reply" value="<?=$uid?>" />
-                            <div style="margin-top: 8px">
-                                <button type="submit" class="right btn btn-primary" id="reply-btn">댓글등록</button>
-                            </div>
-                        </form>
+                <!--- 댓글 입력 폼 -->
+                <div class="dap_ins">
+                    <input type="hidden" name="bno" class="bno" value="<?php echo $bno; ?>">
+                 
+
+                    <div style="margin-top:10px; ">
+                        <textarea name="content" class="reply_content" id="re_content" ></textarea>
+                        <button id="rep_bt" class="re_bt">댓글</button>
                     </div>
-
                 </div>
-
-
-
-
+            </div><!--- 댓글 불러오기 끝 -->
+            <div id="foot_box"></div>
 
 
 
@@ -296,8 +287,6 @@ include "../include/footer.html";
 
             var me = $(this);  // form 자신
             var data = {
-                name: me[0].name.value, // 이름
-                passwd : me[0].passwd.value, // 비번
                 contents : me[0].contents.value, // 내용
                 reply : me[0].reply.value, // 본문번호 == $uid == DB::reply
             }
@@ -348,50 +337,50 @@ include "../include/footer.html";
 </html>
 
 <?php
-// 댓글들을 출력
-$comment_sql = "select * from free_talk_reply where free_number = {$_GET['idx']}";
-$comment_stt=$pdo->prepare($comment_sql);
-$comment_stt->execute();
-// $_SESSION['id']를 존재 유무에 따른 정보 정리
-if(!isset($_SESSION['email']))
-{
-    $id = 'guest';
-}
-else
-{
-    $id=$_SESSION['email'];
-}
-// 삭제와 수정의 권한
-$level_sql = "select * from register_board where email = '$email'";
-$level_stt=$pdo->prepare($level_sql);
-$level_stt->execute();
-$level_row=$level_stt->fetch();
-if(!isset($level_row['level']))
-{
-    $level_row['level']=2;
-}
-while($comment_row=$comment_stt->fetch())
-{
-    echo "<table>
-      <tr>
-        <td>글쓴이</td>
-        <td>{$comment_row['name']}</td>
-      </tr>
-      <tr>
-        <td>내용</td>
-        <td>{$comment_row['content']}</td>
-      </tr>
-      <tr>
-        <td>날짜</td>
-        <td>{$comment_row['date']}</td>
-      </tr>";
-    if($id==$comment_row['name'] || $level_row['level']==0)
-    {
-        echo "<tr>
-                <td><a href='screen_comment_edit.php?idx={$_GET['idx']}&no={$comment_row['idx']}&content={$comment_row['content']}'>수정</a></td>
-                <td><a href='screen_comment_del.php?idx={$_GET['idx']}&no={$comment_row['idx']}'>삭제</a></td>
-              </tr>";
-    }
-    echo "</table>";
-}
-?>
+//// 댓글들을 출력
+//$comment_sql = "select * from free_talk_reply where free_number = {$_GET['idx']}";
+//$comment_stt=$pdo->prepare($comment_sql);
+//$comment_stt->execute();
+//// $_SESSION['id']를 존재 유무에 따른 정보 정리
+//if(!isset($_SESSION['email']))
+//{
+//    $id = 'guest';
+//}
+//else
+//{
+//    $id=$_SESSION['email'];
+//}
+//// 삭제와 수정의 권한
+//$level_sql = "select * from register_board where email = '$email'";
+//$level_stt=$pdo->prepare($level_sql);
+//$level_stt->execute();
+//$level_row=$level_stt->fetch();
+//if(!isset($level_row['level']))
+//{
+//    $level_row['level']=2;
+//}
+//while($comment_row=$comment_stt->fetch())
+//{
+//    echo "<table>
+//      <tr>
+//        <td>글쓴이</td>
+//        <td>{$comment_row['name']}</td>
+//      </tr>
+//      <tr>
+//        <td>내용</td>
+//        <td>{$comment_row['content']}</td>
+//      </tr>
+//      <tr>
+//        <td>날짜</td>
+//        <td>{$comment_row['date']}</td>
+//      </tr>";
+//    if($id==$comment_row['name'] || $level_row['level']==0)
+//    {
+//        echo "<tr>
+//                <td><a href='screen_comment_edit.php?idx={$_GET['idx']}&no={$comment_row['idx']}&content={$comment_row['content']}'>수정</a></td>
+//                <td><a href='screen_comment_del.php?idx={$_GET['idx']}&no={$comment_row['idx']}'>삭제</a></td>
+//              </tr>";
+//    }
+//    echo "</table>";
+//}
+//?>

@@ -1,14 +1,6 @@
-<!---->
-<?php
-//session_start();
-//include "../../pdo_db.php";
-//include "../php/topLogin.php";
-//
-//
-//?>
+
 
 <?php
-
 include "../../pdo_db.php";
 include "../php/topLogin.php";
 $pdo = connect();
@@ -35,18 +27,19 @@ if (!isset($_SESSION['email'])) {
 
 
 // 게시판 글을 입력하는 문
-    $insert_sql = $pdo->prepare("insert into albums_board (title, name, content) VALUES (:title, :name, :content)");
+    $insert_sql = $pdo->prepare("insert into albums_board (name, title ,content) VALUES (:name, :title, :content)");
     $insert_sql->bindValue(':name', $_SESSION['email']);
     $insert_sql->bindValue(':title', $_POST['title']);
     $insert_sql->bindValue(':content', $_POST['content']);
     $insert_sql->execute();
 
 
+
     echo
     "<script>
     window.alert('글이 정상적으로 등록되었습니다!');
     location.href='../php/albums.php';
-    //            location.href='error.php';
+//                location.href='error.php';
   
 </script>";
 }

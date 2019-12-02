@@ -56,8 +56,14 @@ else
 
     echo
     "<script>
-      window.alert('글을 정상적으로 수정하였습니다!');
+    
+    //  window.alert('글을 정상적으로 수정하였습니다!');
       location.href='../php/freeTalk.php?idx={$_GET['idx']}';
     </script>";
 }
 ?>
+<!--alert대신 쓰는 sweettalert2 라이브러리-->
+<!--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>-->
+
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<!--<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>-->

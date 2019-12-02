@@ -1,5 +1,5 @@
 <?php
-//상단 게시판 목록
+/*회원 가입 페이지*/
 
 //오류출력
 error_reporting(E_ALL);
@@ -19,13 +19,13 @@ ini_set("display_errors", 1);
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Hi Esens</title>
+    <title>Always Hiphop</title>
 
     <!-- Favicon -->
     <link rel="icon" href="../img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -50,7 +50,7 @@ ini_set("display_errors", 1);
 
 
 <!-- ##### Breadcumb Area Start ##### -->
-<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../img/bg-img/breadcumb3.jpg);">
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../image/freeimage.jpg);">
     <div class="bradcumbContent">
         <p>See what’s new</p>
         <h2>Create account</h2>

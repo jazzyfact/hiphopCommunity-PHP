@@ -21,7 +21,9 @@ ini_set("display_errors", 1);
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Hi Esens</title>
+    <title>Always Hiphop</title>
+
+    <!--ck에디터4.7.1-->
     <script src="../js/jquery-1.7.2.min.js"  type="text/javascript"></script>
     <!-- Favicon -->
     <link rel="icon" href="../img/core-img/favicon.ico">
@@ -49,12 +51,7 @@ ini_set("display_errors", 1);
     </div>
 </div>
 
-<!-- ##### Header Area Start ##### -->
-
-
-<!-- ##### Header Area End ##### -->
-
-
+<!--상단 배경화면-->
 <!-- ##### Breadcumb Area Start ##### -->
 <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../image/freeimage.jpg);">
     <div class="bradcumbContent">
@@ -66,16 +63,17 @@ ini_set("display_errors", 1);
 <!-- ##### Breadcumb Area End ##### -->
 
 <!-- ##### Blog Area Start ##### -->
+<!---게시판 폼-->
 <div class="blog-area section-padding-100">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-9" style="margin-left: 300px ">
+            <div class="col-12 col-lg-9" style="margin-left: 100px ">
 
                 <form action="albumsInsert.php" method="post">
                     <input type="text" id="utitle" name="title" size="70" rows="1" cols="90" placeholder="제목"
                            maxlength="100"/>
                     <textarea id="content" name="content"></textarea>
-                    <input type="submit" value="전송">
+                    <input type="submit" value="글쓰기" class="btn oneMusic-btn mt-5" style="text-align: center">
                 </form>
 
                 <form id="img_upload_form" action="imageUpLoad.php" enctype="multipart/form-data" method="post" style="display:none;">
@@ -90,26 +88,8 @@ ini_set("display_errors", 1);
                     </div>
                 </div>
 
-
-
-
                     <br>
                     <br>
-                    <!-- 버튼 적용 -->
-<!--                    <input type="submit" value="글쓰기" class="btn oneMusic-btn mt-5" style="text-align: center">-->
-<!--                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp-->
-<!--                    <input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn oneMusic-btn mt-5" >-->
-                    <!--                    <div class="bt_se">-->
-                    <!--&lt;!&ndash;                        <input type="submit" value="글쓰기" class="btn-gradient blue mini">&ndash;&gt;-->
-                    <!--&lt;!&ndash;                        <input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn-gradient blue mini">&ndash;&gt;-->
-
-                    <!--                    </div>-->
-<!--                </form>-->
-
-
-
-
-
 
 
             </div>
@@ -133,7 +113,7 @@ include "../include/footer.html";
 <!--</script>-->
 
 
-
+<!--ck에디터-->
 <script src="../js/jquery.form.min.js" type="text/javascript"></script>
 <script src="../js/ckeditor/ckeditor.js" type="text/javascript"></script>
 <script src="../js/ckeditor/adapters/jquery.js" type="text/javascript"></script>
@@ -173,50 +153,49 @@ include "../include/footer.html";
 
 
 <!--게시글 10초마다 sessionStroage에 자동 저장-->
-<!--<script>-->
+<script>
+    (function () {
+        var autoSave = {};
+        (function (obj) {
+            obj.configuration = {
+                interval: 10 // second(s)
+            };
+            obj.bindTimer = function() {
+                var textEle = document.querySelector('#auto');
+                var textVal = textEle.value;
+                var ref1, ref2, ref3; // Newer -&gt; Older
 
-<!--    (function () {-->
-<!--        var autoSave = {};-->
-<!--        (function (obj) {-->
-<!--            obj.configuration = {-->
-<!--                interval: 10 // second(s)-->
-<!--            };-->
-<!--            obj.bindTimer = function() {-->
-<!--                var textEle = document.querySelector('#auto');-->
-<!--                var textVal = textEle.value;-->
-<!--                var ref1, ref2, ref3; // Newer -&gt; Older-->
+                // Save to localStorage
+                // 게시글에 입력한 문자를 Base64로 인코딩 해줌
+                //utf-8 인 경우 btoa(unescape(encodeURIComponent(textVal)) 이런 식으로 인코딩해줘야 한다
+                //최대 3개까지 세션스토리지에 자동 저장 된다
+                var encodedTextVal = btoa(unescape(encodeURIComponent(textVal)));
+                ref1 = window.sessionStorage.getItem('textval-01');
+                ref2 = window.sessionStorage.getItem('textval-02');
 
-<!--                // Save to localStorage-->
-<!--                // 게시글에 입력한 문자를 Base64로 인코딩 해줌-->
-<!--                //utf-8 인 경우 btoa(unescape(encodeURIComponent(textVal)) 이런 식으로 인코딩해줘야 한다-->
-<!--                //최대 3개까지 세션스토리지에 자동 저장 된다-->
-<!--                var encodedTextVal = btoa(unescape(encodeURIComponent(textVal)));-->
-<!--                ref1 = window.sessionStorage.getItem('textval-01');-->
-<!--                ref2 = window.sessionStorage.getItem('textval-02');-->
+                if ((window.sessionStorage) && (encodedTextVal != ref1)){
+                    window.sessionStorage.setItem('textval-01', encodedTextVal);
+                    window.sessionStorage.setItem('textval-02', ref1);
+                    window.sessionStorage.setItem('textval-03', ref2);
+                }
+                else if (!window.sessionStorage) {
+                    console.log('Error' + ': Your browser not support');
+                    return false;
+                }
+            };
 
-<!--                if ((window.sessionStorage) && (encodedTextVal != ref1)){-->
-<!--                    window.sessionStorage.setItem('textval-01', encodedTextVal);-->
-<!--                    window.sessionStorage.setItem('textval-02', ref1);-->
-<!--                    window.sessionStorage.setItem('textval-03', ref2);-->
-<!--                }-->
-<!--                else if (!window.sessionStorage) {-->
-<!--                    console.log('Error' + ': Your browser not support');-->
-<!--                    return false;-->
-<!--                }-->
-<!--            };-->
-
-<!--            obj.start = function() {-->
-<!--                obj.bindTimer();-->
-<!--                setTimeout(function() {-->
-<!--                    obj.start();-->
-<!--                }, obj.configuration.interval * 1000);-->
-<!--            };-->
-<!--            obj.start();-->
-<!--        })(autoSave);-->
-<!--    })();-->
+            obj.start = function() {
+                obj.bindTimer();
+                setTimeout(function() {
+                    obj.start();
+                }, obj.configuration.interval * 1000);
+            };
+            obj.start();
+        })(autoSave);
+    })();
 
 
-<!--</script>-->
+</script>
 
 </body>
 

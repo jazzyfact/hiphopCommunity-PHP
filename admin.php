@@ -1,4 +1,12 @@
 <?php
+/*내 홈페이지에 접속한 사용자들을 분석해서 보여주는 페이지
+1.총 방문자 수
+2.요일 별 방문자 수
+3.날짜 별 방문자 수
+4.접속한 브라우저
+5.사용한 os
+6.접속한 나라*/
+
 include "../pdo_db.php";
 $pdo = connect();
 
@@ -45,6 +53,11 @@ $visit_date_stmt = $pdo->prepare($visit_date_sql);
 $visit_date_stmt->execute();
 $day_arr = $visit_date_stmt->fetchAll(PDO::FETCH_ASSOC);
 
+//검색엔진
+$referer_sql = "SELECT count(referer) as count,referer from visitor_info group by referer";
+$referer_stmt = $pdo->prepare($referer_sql);
+$referer_stmt->execute();
+$referer_arr = $referer_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
@@ -61,82 +74,12 @@ $day_arr = $visit_date_stmt->fetchAll(PDO::FETCH_ASSOC);
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages': ['corechart']});
-        google.charts.setOnLoadCallback(drawBrowserChart);
-        google.charts.setOnLoadCallback(drawOsChart);
-        google.charts.setOnLoadCallback(drawCountryChart);
-        google.charts.setOnLoadCallback(drawDayChart);
-        google.charts.setOnLoadCallback(drawVisitDateChart);
-
-
-        //방문자 사용한 브라우저 종류 나타내는 차트
-        function drawBrowserChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['browser', 'Count'],
-                <?php foreach($browser_arr as $key=>$val){?>
-                ['<?php echo $val['browser']?>', <?php echo $val['count']?>],
-                <?php } ?>
-            ]);
-            var options = {
-                title: '접속한 브라우저',
-                legend: { position: 'bottom' },
-                series: {
-                    0: { color: '#a561bd' },
-                    1: { color: '#c784de' },
-                    2: { color: '#f1ca3a' },
-                    3: { color: '#2980b9' },
-                    4: { color: '#e67e22' }
-                }
-            };
-
-            var chart = new google.visualization.ColumnChart(document.getElementById('pieBrowserChart'));
-            chart.draw(data, options);
-        }
-
-        //방문한 사용자가 쓰는 os 종류 나타내는 차트
-        function drawOsChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['os', 'Count'],
-                <?php foreach($os_arr as $key=>$val){?>
-                ['<?php echo $val['os']?>', <?php echo $val['count']?>],
-                <?php } ?>
-            ]);
-            var options = {
-                title: 'os Count',
-                pieHole: 0.4,
-            };
-            var chart = new google.visualization.PieChart(document.getElementById('pieOsChart'));
-            chart.draw(data, options);
-        }
-
-        //방문한 사용자가 접속한 나라를 표시하는 차트
-        function drawCountryChart() {
-            var data = google.visualization.arrayToDataTable([
-                    ['country','Count'],
-                    <?php foreach($country_arr as $key=>$val){?>
-                    ['<?php echo $val['country']?>', <?php echo $val['count']?>],
-                    <?php } ?>
-                ]
-            );
-            var chartOptions = {
-                title: 'Country Count',
-
-                // series: {
-                //     0: { color: '#a561bd' },
-                //     1: { color: '#c784de' },
-                //     2: { color: '#f1ca3a' },
-                //     3: { color: '#2980b9' },
-                //     4: { color: '#e67e22' }
-                // }
-            };
-
-            var geochart = new google.visualization.GeoChart(document.getElementById('geoCountryChart'));
-            geochart.draw(data, chartOptions);
-
-            var donutChart = new google.visualization.PieChart(document.getElementById('donutCountryChart'));
-            donutChart.draw(data, chartOptions);
-
-        }
-
+        google.charts.setOnLoadCallback(drawDayChart); //요일별 방문자
+        google.charts.setOnLoadCallback(drawVisitDateChart);//날짜별 방문자
+        google.charts.setOnLoadCallback(drawBrowserChart);//사용하는 브라우저
+        google.charts.setOnLoadCallback(drawOsChart);//사용하는 os
+        google.charts.setOnLoadCallback(drawCountryChart);//접속한 나라
+        google.charts.setOnLoadCallback(drawRefererChart);//이전에 접속한 사이트
 
         //요일별 방문자 접속 차트
         function drawDayChart() {
@@ -185,8 +128,95 @@ $day_arr = $visit_date_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
+        //방문자 사용한 브라우저 종류 나타내는 차트
+        function drawBrowserChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['browser', 'Count'],
+                <?php foreach($browser_arr as $key=>$val){?>
+                ['<?php echo $val['browser']?>', <?php echo $val['count']?>],
+                <?php } ?>
+            ]);
+            var options = {
+                title: '접속한 브라우저',
+                legend: { position: 'bottom' },
+                series: {
+                    0: { color: '#a561bd' },
+                    1: { color: '#c784de' },
+                    2: { color: '#f1ca3a' },
+                    3: { color: '#2980b9' },
+                    4: { color: '#e67e22' }
+                }
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('pieBrowserChart'));
+            chart.draw(data, options);
+        }
+
+        //방문한 사용자가 쓰는 os 종류 나타내는 차트
+        function drawOsChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['os', 'Count'],
+                <?php foreach($os_arr as $key=>$val){?>
+                ['<?php echo $val['os']?>', <?php echo $val['count']?>],
+                <?php } ?>
+            ]);
+            var options = {
+                title: '사용하는 OS',
+                pieHole: 0.4,
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('pieOsChart'));
+            chart.draw(data, options);
+        }
+
+        //방문한 사용자가 접속한 나라를 표시하는 차트
+        function drawCountryChart() {
+            var data = google.visualization.arrayToDataTable([
+                    ['country','Count'],
+                    <?php foreach($country_arr as $key=>$val){?>
+                    ['<?php echo $val['country']?>', <?php echo $val['count']?>],
+                    <?php } ?>
+                ]
+            );
+            var chartOptions = {
+                title: '접속한 나라',
+
+                // series: {
+                //     0: { color: '#a561bd' },
+                //     1: { color: '#c784de' },
+                //     2: { color: '#f1ca3a' },
+                //     3: { color: '#2980b9' },
+                //     4: { color: '#e67e22' }
+                // }
+            };
+
+            var geochart = new google.visualization.GeoChart(document.getElementById('geoCountryChart'));
+            geochart.draw(data, chartOptions);
+
+            var donutChart = new google.visualization.PieChart(document.getElementById('donutCountryChart'));
+            donutChart.draw(data, chartOptions);
+
+        }
 
 
+        //이전에 접속한 사이트
+        function drawRefererChart() {
+            var data = google.visualization.arrayToDataTable([
+                    ['referer', 'Count'],
+                    <?php foreach($referer_arr as $key=>$val){?>
+                    ['<?php echo $val['referer']?>', <?php echo $val['count']?>],
+                    <?php } ?>
+                ]
+            );
+            var Options = {
+                title: '검색 사이트 경로',
+
+            };
+
+            var daychart = new google.visualization.PieChart(document.getElementById('refererChart'));
+            daychart.draw(data, Options);
+
+
+        }
 
     </script>
 </head>
@@ -194,27 +224,20 @@ $day_arr = $visit_date_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 <p align="center">총 방문자 수 :<?php echo $total_list;?></p>
+<!--검색엔진 차트-->
+<div id="refererChart" style="width: 1000px; height: 500px;"></div>
 <!--요일별 방문자  차트-->
 <div id="barDateTimeChart" style="width: 500px; height: 400px;"></div>
-<!--주 방문자 차트-->
+<!--날짜별 방문자 차트-->
 <div id="weekVisitorChart" style="width: 1500px; height: 500px;"></div>
-
-
-
-
-<!--브라우저 pie 원형 차트-->
+<!--접속한 브라우저 pie 원형 차트-->
 <div id="pieBrowserChart" style="width: 700px; height: 400px;"></div>
-<!--os 도넛 차트-->
-<div id="pieOsChart"  style="width: 700px; height: 400px;"></div>
-
-<!--나라  pie 차트-->
-<div id="donutCountryChart" style="width: 700px; height: 400px;"></div>
-<!--나라 지도 geo 차트-->
-<div id="geoCountryChart" style="width: 700px; height: 400px;"></div>
-
-
-
-
+<!--사용하는 os 도넛 차트-->
+<div id="pieOsChart"  style="width: 800px; height: 500px;"></div>
+<!--접속한 나라  pie 차트-->
+<div id="donutCountryChart" style="width: 800px; height: 500px;"></div>
+<!--접속한 나라 지도 geo 차트-->
+<div id="geoCountryChart" style="width: 800px; height: 500px;"></div>
 
 </body>
 </html>

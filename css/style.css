@@ -920,6 +920,8 @@ img {
       border-color: transparent;
       background-color: transparent; }
 
+<!--index.html페이지 앨범 슬라이드 화면-->
+
 .single-album {
   position: relative;
   z-index: 1;
@@ -927,7 +929,8 @@ img {
   transition-duration: 500ms;
   margin-bottom: 30px; }
   .single-album img {
-    width: 100%; }
+    width: 150px;
+  height: 150px;}
   .single-album .album-info {
     position: relative;
     z-index: 1;

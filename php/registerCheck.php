@@ -1,16 +1,18 @@
 <?php
+/*회원 가입 체크 페이지*/
 include "../../pdo_db.php"; //pdo
-//include "../../mysqli_db.php";
-
 $pdo = connect();
 
 
+
 $email = $_POST['email'];
-// 1. table에서 중복 된 아이디가 있는지 검사하는 sql문
+// 1. 아이디 중복 검사
 $check_sql = "select email from register_board where email='$email'";
 $check_stt = $pdo->prepare($check_sql);
 $check_stt->execute();
 $check_row = $check_stt->fetch();
+
+//예외처리
 if (!$_POST['email']) {
     echo
     "<script>
@@ -18,7 +20,6 @@ if (!$_POST['email']) {
       history.back(-1);
     </script>";
 }
-// 여기닷! sql문을 사용한 곳!
 
 else if ($check_row['email'] == $_POST['email']) {
     echo
@@ -43,16 +44,16 @@ else if ($check_row['email'] == $_POST['email']) {
 else{
     $member_pass = md5($_POST['password']);
     // 2. 회원가입에 필요한 정보를 모두 입력했는지 확인 한 후, 테이블에 해당 정보를 입력하는 sql문
-    $member_sql = $pdo->prepare("insert into register_board(email, password, name) values(:eamil, :password, :name)");
+    $member_sql = $pdo->prepare("insert into register_board(email, password, name) values(:email, :password, :name)");
     $member_sql->bindValue(':email', $_POST['email']);
     $member_sql->bindValue(':password', $member_pass);
     $member_sql->bindValue(':name', $_POST['name']);
     $member_sql->execute();
 
     //mysql 에러 출력구문
-    echo "\nPDOStatement::errorInfo()";
-    $arr = $member_sql->errorInfo();
-    print_r($arr);
+//    echo "\nPDOStatement::errorInfo()";
+//    $arr = $member_sql->errorInfo();
+//    print_r($arr);
 
     echo
     "<script>
