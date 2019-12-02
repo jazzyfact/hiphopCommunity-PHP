@@ -30,19 +30,22 @@ $dayofweek_stmt = $pdo->prepare($dayofweek_sql);
 $dayofweek_stmt->execute();
 $dayofweek_arr = $dayofweek_stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
 //총 방문자수
 
 $total_sql = "SELECT count(*)from visitor_info ";
 $total_stmt = $pdo->prepare($total_sql);
 $total_stmt->execute();
-$total_arr = $total_stmt->fetchAll(PDO::FETCH_ASSOC);
-echo print_r($total_arr);;
+$total_arr = $total_stmt->fetch();
+$total_list = $total_arr['count(*)'];//총 게시글의 수
 
-//지도 차트
-//$geo_sql = "SELECT count(dayofweek) as count,dayofweek from visitor_info group by dayofweek";
-//$dayofweek_stmt = $pdo->prepare($dayofweek_sql);
-//$dayofweek_stmt->execute();
-//$dayofweek_arr = $dayofweek_stmt->fetchAll(PDO::FETCH_ASSOC);
+//주 방문자 수
+$visit_date_sql = "SELECT count(visit_date) as count,visit_date from visitor_info group by visit_date";
+$visit_date_stmt = $pdo->prepare($visit_date_sql);
+$visit_date_stmt->execute();
+$day_arr = $visit_date_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 
 
@@ -61,8 +64,8 @@ echo print_r($total_arr);;
         google.charts.setOnLoadCallback(drawBrowserChart);
         google.charts.setOnLoadCallback(drawOsChart);
         google.charts.setOnLoadCallback(drawCountryChart);
-        google.charts.setOnLoadCallback(drawDateTimeChart);
-        google.charts.setOnLoadCallback(drawVisiterTotalChart);
+        google.charts.setOnLoadCallback(drawDayChart);
+        google.charts.setOnLoadCallback(drawVisitDateChart);
 
 
         //방문자 사용한 브라우저 종류 나타내는 차트
@@ -99,7 +102,7 @@ echo print_r($total_arr);;
             ]);
             var options = {
                 title: 'os Count',
-                is3D: true
+                pieHole: 0.4,
             };
             var chart = new google.visualization.PieChart(document.getElementById('pieOsChart'));
             chart.draw(data, options);
@@ -108,34 +111,35 @@ echo print_r($total_arr);;
         //방문한 사용자가 접속한 나라를 표시하는 차트
         function drawCountryChart() {
             var data = google.visualization.arrayToDataTable([
-                    ['country', 'Count'],
+                    ['country','Count'],
                     <?php foreach($country_arr as $key=>$val){?>
                     ['<?php echo $val['country']?>', <?php echo $val['count']?>],
                     <?php } ?>
                 ]
             );
-            var barchartOptions = {
+            var chartOptions = {
                 title: 'Country Count',
-                series: {
-                    0: { color: '#a561bd' },
-                    1: { color: '#c784de' },
-                    2: { color: '#f1ca3a' },
-                    3: { color: '#2980b9' },
-                    4: { color: '#e67e22' }
-                }
+
+                // series: {
+                //     0: { color: '#a561bd' },
+                //     1: { color: '#c784de' },
+                //     2: { color: '#f1ca3a' },
+                //     3: { color: '#2980b9' },
+                //     4: { color: '#e67e22' }
+                // }
             };
 
-            var barchart = new google.visualization.GeoChart(document.getElementById('geoCountryChart'));
-            barchart.draw(data, barchartOptions);
+            var geochart = new google.visualization.GeoChart(document.getElementById('geoCountryChart'));
+            geochart.draw(data, chartOptions);
 
-            var barchart = new google.visualization.PieChart(document.getElementById('barCountryChart'));
-            barchart.draw(data, barchartOptions);
+            var donutChart = new google.visualization.PieChart(document.getElementById('donutCountryChart'));
+            donutChart.draw(data, chartOptions);
 
         }
 
 
-        //방문한 사용자가 요일을 표시하는 차트
-        function drawDateTimeChart() {
+        //요일별 방문자 접속 차트
+        function drawDayChart() {
             var data = google.visualization.arrayToDataTable([
                     ['dayofweek', 'Count'],
                     <?php foreach($dayofweek_arr as $key=>$val){?>
@@ -143,22 +147,41 @@ echo print_r($total_arr);;
                     <?php } ?>
                 ]
             );
-            var barchartOptions = {
-                title: 'date Count',
+            var Options = {
+                title: '요일별 방문 자 수',
                 width: 600,
                 height: 400,
                 bar: {groupWidth: "95%"},
                 legend: { position: "none" },
             };
 
-            var barchart = new google.visualization.ColumnChart(document.getElementById('barDateTimeChart'));
-            barchart.draw(data, barchartOptions);
+            var daychart = new google.visualization.ColumnChart(document.getElementById('barDateTimeChart'));
+            daychart.draw(data, Options);
 
 
         }
 
+        //주 방문자 접속 차트
+        function drawVisitDateChart() {
+            var data = google.visualization.arrayToDataTable([
+                    ['visit_date', 'Count'],
+                    <?php foreach($day_arr as $key=>$val){?>
+                    ['<?php echo $val['visit_date']?>', <?php echo $val['count']?>],
+                    <?php } ?>
+                ]
+            );
+            var Options = {
+                title: '날짜별 방문 자 수',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+
+            };
+
+            var daychart = new google.visualization.LineChart(document.getElementById('weekVisitorChart'));
+            daychart.draw(data, Options);
 
 
+        }
 
 
 
@@ -168,23 +191,29 @@ echo print_r($total_arr);;
     </script>
 </head>
 <body>
-<!--브라우저 원형 차트-->
-<div id="pieBrowserChart" style="width: 500px; height: 400px;"></div>
-<!--os 원형 차트-->
-<div id="pieOsChart"  style="width: 500px; height: 400px;"></div>
-
-<!--나라 막대기 차트-->
-<div id="barCountryChart" style="width: 500px; height: 400px;"></div>
-<!--나라 막대기 차트-->
-<div id="geoCountryChart" style="width: 500px; height: 400px;"></div>
 
 
-
-<!--날짜 시간별 차트-->
+<p align="center">총 방문자 수 :<?php echo $total_list;?></p>
+<!--요일별 방문자  차트-->
 <div id="barDateTimeChart" style="width: 500px; height: 400px;"></div>
+<!--주 방문자 차트-->
+<div id="weekVisitorChart" style="width: 1500px; height: 500px;"></div>
 
-<!--총 방문자 차트-->
-<div id="total" style="width: 500px; height: 400px;"></div>
+
+
+
+<!--브라우저 pie 원형 차트-->
+<div id="pieBrowserChart" style="width: 700px; height: 400px;"></div>
+<!--os 도넛 차트-->
+<div id="pieOsChart"  style="width: 700px; height: 400px;"></div>
+
+<!--나라  pie 차트-->
+<div id="donutCountryChart" style="width: 700px; height: 400px;"></div>
+<!--나라 지도 geo 차트-->
+<div id="geoCountryChart" style="width: 700px; height: 400px;"></div>
+
+
+
 
 
 </body>
