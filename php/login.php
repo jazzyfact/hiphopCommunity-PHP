@@ -1,6 +1,8 @@
 <?php
+/*로그인 페이지
+loginCheck.php 로 값을 보내서 체크함
+*/
 
-//include "../php/topLogin.php";
 ?>
 
 
@@ -37,6 +39,7 @@
 </div>
 
 <!-- ##### Header Area Start ##### -->
+<!--헤더 부분-->
 <?php include "../include/header.html";?>
 <!-- ##### Header Area End ##### -->
 
@@ -49,6 +52,7 @@
 </section>
 <!-- ##### Breadcumb Area End ##### -->
 
+<!--이메일, 비밀번호 입력 폼-->
 <!-- ##### Login Area Start ##### -->
 <section class="login-area section-padding-100">
     <div class="container">

@@ -1,8 +1,17 @@
 <?php
+session_start();
+include "../include/email.php";
+
 include '../../pdo_db.php';
 
-
-
+//앨범 게시판
+//php/albums.php 앨범게시판 목록
+//board/albumsWrite.html 앨범게시판 게시글 작성
+//board/albumsInsert.php 게시글 작성 한 내용 받아서 db에 저장
+//board/albumsRead.php 게시글 작성 읽는 곳
+//board/albumsModify.php 게시글 작성 수정
+//board/albumsUpdate.php Modify에서 보낸 값들을 받아서 수정한 내용을 db에 저장
+//board/albumsDelete.php 게시글 삭제
 
 
 $pdo = connect();
@@ -131,6 +140,10 @@ $list_stt->execute();
             <!--                </div>-->
             <!--            </div>-->
 
+            <!--db에서 꺼낸 값들을 여기서 보여줌
+            게시글 번호, 내용, 날짜 , 제목
+            앨범게시판이라서 내용을 먼저 보여줌
+            아직 썸네일은 적용안함-->
             <?php
 
             while ($list_row = $list_stt->fetch()) {
@@ -157,6 +170,7 @@ $list_stt->execute();
                 <?php
             }
 
+            //페이징
             echo "</table>";
             // 2. 총 페이지를 구하기 위한 sql문
             $total_sql = "select count(*) from albums_board";

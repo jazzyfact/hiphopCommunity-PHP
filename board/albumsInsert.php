@@ -1,10 +1,12 @@
-
+<!--게시글 작성 한 거 db에 넣는 곳
+board/albumsWrite.html 에서 보내온 내용을 받아서 체크 한 후 db에 저장함-->
 
 <?php
 include "../../pdo_db.php";
 include "../php/topLogin.php";
 $pdo = connect();
 
+//로그인한 회원만 게시글을 작성 할 수 있음
 if (!isset($_SESSION['email'])) {
     echo "
 <script>
@@ -35,9 +37,12 @@ if (!isset($_SESSION['email'])) {
 
 
 
+
+
     echo
     "<script>
     window.alert('글이 정상적으로 등록되었습니다!');
+  
     location.href='../php/albums.php';
 //                location.href='error.php';
   
@@ -72,4 +77,3 @@ ini_set("display_errors", 1);
 //echo "image Uploads 성공!!";
 
 ?>
-

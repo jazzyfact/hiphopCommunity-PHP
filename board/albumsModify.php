@@ -1,3 +1,5 @@
+<!--게시글 수정하는 곳-->
+
 <?php
 include "../include/header.html";
 include "../../pdo_db.php";
@@ -89,7 +91,7 @@ ini_set("display_errors", 1);
                             <textarea id="content" name="content"><?= $edit_row['content'] ?></textarea>
                         <input type="submit" value="작성" class="btn oneMusic-btn mt-5" style="text-align: center">
                         </form>
-
+                        <!--이미지업로드는 imageUpLoad.php 로 감-->
                         <form id="img_upload_form" action="imageUpLoad.php" enctype="multipart/form-data" method="post" style="display:none;">
                             <input type='file' id="img_file" multiple="multiple" name='imgfile[]' accept="image/*">
                         </form>

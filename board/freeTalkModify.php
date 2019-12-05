@@ -31,7 +31,7 @@ ini_set("display_errors", 1);
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Hi Esens</title>
+    <title>Always Hiphop</title>
 
     <!-- Favicon -->
     <link rel="icon" href="../img/core-img/favicon.ico">
@@ -88,7 +88,7 @@ ini_set("display_errors", 1);
 <div class="blog-area section-padding-100">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-9"  style="margin-left: 300px ">
+            <div class="col-12 col-lg-9"  style="margin-left: 100px ">
 
 
                 <div class="11" style="text-align: justify-all">

@@ -1,9 +1,11 @@
 <?php
-
+session_start();
+include "../include/email.php";
 include "../../pdo_db.php";
 
-
 $dbo = connect();
+
+
 // 페이징에 필요한 변수 11개
 // 페이지 값이 없다면 1이되도록 지정
 if (!isset($_GET['page'])) {

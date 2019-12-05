@@ -199,24 +199,24 @@ $referer_arr = $referer_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
         //이전에 접속한 사이트
-        function drawRefererChart() {
-            var data = google.visualization.arrayToDataTable([
-                    ['referer', 'Count'],
-                    <?php foreach($referer_arr as $key=>$val){?>
-                    ['<?php echo $val['referer']?>', <?php echo $val['count']?>],
-                    <?php } ?>
-                ]
-            );
-            var Options = {
-                title: '검색 사이트 경로',
-
-            };
-
-            var daychart = new google.visualization.PieChart(document.getElementById('refererChart'));
-            daychart.draw(data, Options);
-
-
-        }
+        //function drawRefererChart() {
+        //    var data = google.visualization.arrayToDataTable([
+        //            ['referer', 'Count'],
+        //            <?php //foreach($referer_arr as $key=>$val){?>
+        //            ['<?php //echo $val['referer']?>//', <?php //echo $val['count']?>//],
+        //            <?php //} ?>
+        //        ]
+        //    );
+        //    var Options = {
+        //        title: '검색 사이트 경로',
+        //
+        //    };
+        //
+        //    var daychart = new google.visualization.PieChart(document.getElementById('refererChart'));
+        //    daychart.draw(data, Options);
+        //
+        //
+        //}
 
     </script>
 </head>
@@ -225,7 +225,7 @@ $referer_arr = $referer_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <p align="center">총 방문자 수 :<?php echo $total_list;?></p>
 <!--검색엔진 차트-->
-<div id="refererChart" style="width: 1000px; height: 500px;"></div>
+<!--<div id="refererChart" style="width: 1000px; height: 500px;"></div>-->
 <!--요일별 방문자  차트-->
 <div id="barDateTimeChart" style="width: 500px; height: 400px;"></div>
 <!--날짜별 방문자 차트-->

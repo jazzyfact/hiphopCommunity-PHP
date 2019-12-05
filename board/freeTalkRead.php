@@ -30,7 +30,7 @@ ini_set("display_errors", 1);
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Hi Esens</title>
+    <title>Always Hiphop</title>
 
     <!-- Favicon -->
     <link rel="icon" href="../img/core-img/favicon.ico">
@@ -101,7 +101,7 @@ ini_set("display_errors", 1);
 <div class="blog-area section-padding-100">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-lg-9" style="margin-left: 300px ">
+            <div class="col-12 col-lg-9" style="margin-left: 100px ">
 
 
                 <!--여기서 작성-->
@@ -193,18 +193,7 @@ ini_set("display_errors", 1);
 
 
 
-                <!--- 댓글 입력 폼 -->
-                <div class="dap_ins">
-                    <input type="hidden" name="bno" class="bno" value="<?php echo $bno; ?>">
-                 
 
-                    <div style="margin-top:10px; ">
-                        <textarea name="content" class="reply_content" id="re_content" ></textarea>
-                        <button id="rep_bt" class="re_bt">댓글</button>
-                    </div>
-                </div>
-            </div><!--- 댓글 불러오기 끝 -->
-            <div id="foot_box"></div>
 
 
 

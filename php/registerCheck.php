@@ -1,5 +1,6 @@
 <?php
-/*회원 가입 체크 페이지*/
+/*회원 가입 체크 페이지
+register.php에서 보낸 값들을 체크하고 저장*/
 include "../../pdo_db.php"; //pdo
 $pdo = connect();
 
@@ -42,6 +43,7 @@ else if ($check_row['email'] == $_POST['email']) {
 }
 
 else{
+    //회원가입 시작, 비밀번호 암호화
     $member_pass = md5($_POST['password']);
     // 2. 회원가입에 필요한 정보를 모두 입력했는지 확인 한 후, 테이블에 해당 정보를 입력하는 sql문
     $member_sql = $pdo->prepare("insert into register_board(email, password, name) values(:email, :password, :name)");
@@ -55,6 +57,7 @@ else{
 //    $arr = $member_sql->errorInfo();
 //    print_r($arr);
 
+    //회원가입 성공 후 띄워주는 메세지
     echo
     "<script>
       window.alert('회원가입이 완료되었습니다!');

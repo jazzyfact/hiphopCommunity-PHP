@@ -1,3 +1,5 @@
+<!--앨범게시판에 작성된 게시글 삭제-->
+
 <?php
 include "../include/header.html";
 include "../../pdo_db.php";
