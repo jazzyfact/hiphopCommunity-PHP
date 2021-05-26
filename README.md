@@ -23,7 +23,7 @@
 
 ## 🎞️상세내용
 
-<img src="https://user-images.githubusercontent.com/51365114/119629679-35d56680-be49-11eb-93d8-bafc9d8947cb.png" width="1000" height="100"/>
+<img src="https://user-images.githubusercontent.com/51365114/119629679-35d56680-be49-11eb-93d8-bafc9d8947cb.png" width="1000" height="400"/>
 
 ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/34631bc2-561e-44f7-aa57-0ce37a61b4a0/.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/34631bc2-561e-44f7-aa57-0ce37a61b4a0/.png)
 
