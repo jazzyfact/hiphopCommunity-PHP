@@ -23,17 +23,21 @@
 
 ## 🎞️상세내용
 
-<img src="https://user-images.githubusercontent.com/51365114/119629679-35d56680-be49-11eb-93d8-bafc9d8947cb.png" width="1000" height="400"/>
+<img src="https://user-images.githubusercontent.com/51365114/119629679-35d56680-be49-11eb-93d8-bafc9d8947cb.png" width="1000" height="300"/>
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/34631bc2-561e-44f7-aa57-0ce37a61b4a0/.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/34631bc2-561e-44f7-aa57-0ce37a61b4a0/.png)
+<img src="https://user-images.githubusercontent.com/51365114/119629981-7b922f00-be49-11eb-915e-af971d00b939.png" width="1000" height="300"/>
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a608b01f-c777-4caf-9a47-2ed03b0b6791/.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a608b01f-c777-4caf-9a47-2ed03b0b6791/.png)
+<img src="https://user-images.githubusercontent.com/51365114/119629679-35d56680-be49-11eb-93d8-bafc9d8947cb.png" width="1000" height="300"/>
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4996b2a9-0bba-479d-901d-7b1f529a9bbc/.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4996b2a9-0bba-479d-901d-7b1f529a9bbc/.png)
+<img src="https://user-images.githubusercontent.com/51365114/119630040-88168780-be49-11eb-92c5-3b878845741c.png" width="1000" height="300"/>
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e1e95a22-8bc7-40f4-bfb8-d61ac72a31d0/.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e1e95a22-8bc7-40f4-bfb8-d61ac72a31d0/.png)
+<img src="https://user-images.githubusercontent.com/51365114/119630118-98c6fd80-be49-11eb-8541-e56afbed7b25.png" width="1000" height="300"/>
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ad7525a6-c5e2-4c3a-8b2b-f127d91a7be9/.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ad7525a6-c5e2-4c3a-8b2b-f127d91a7be9/.png)
+<img src="https://user-images.githubusercontent.com/51365114/119630164-a67c8300-be49-11eb-813b-c421e516172c.png" width="1000" height="300"/>
+
+
+
+
 
 ## 💻기능
 
