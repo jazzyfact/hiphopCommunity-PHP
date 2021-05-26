@@ -17,15 +17,13 @@
 
 **클라이언트 기능 구현(템플릿 커스터 마이징) 및 서버 구현(PHP)**
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f02220e0-b017-48ca-a668-334e12eb37a2/ALWAYSHHIPHOP.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f02220e0-b017-48ca-a668-334e12eb37a2/ALWAYSHHIPHOP.png)
-
 **Github** : [https://github.com/jazzyfact/EsensPHP](https://github.com/jazzyfact/EsensPHP)
 
 **Video** : [https://www.youtube.com/watch?v=4TZL26djqzo](https://www.youtube.com/watch?v=4TZL26djqzo)
 
 ## 🎞️상세내용
 
----
+<img src="https://user-images.githubusercontent.com/51365114/119629679-35d56680-be49-11eb-93d8-bafc9d8947cb.png" width="1000" height="100"/>
 
 ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/34631bc2-561e-44f7-aa57-0ce37a61b4a0/.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/34631bc2-561e-44f7-aa57-0ce37a61b4a0/.png)
 
