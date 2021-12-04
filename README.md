@@ -20,7 +20,7 @@
 
 <br/><br/>
 
-## 시연영상 
+## 시연영상(클릭) 
 
 [![Video Label](http://img.youtube.com/vi/4TZL26djqzo/0.jpg)](https://www.youtube.com/4TZL26djqzo)
 
