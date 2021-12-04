@@ -20,7 +20,11 @@
 
 <br/><br/>
 
-**Video** : [https://www.youtube.com/watch?v=4TZL26djqzo](https://www.youtube.com/watch?v=4TZL26djqzo)
+## 시연영상 
+
+[https://www.youtube.com/watch?v=4TZL26djqzo](https://www.youtube.com/watch?v=4TZL26djqzo)
+
+<br/><br/>
 
 ## 🎞️상세내용
 
