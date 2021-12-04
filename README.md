@@ -22,7 +22,8 @@
 
 ## 시연영상 
 
-[https://www.youtube.com/watch?v=4TZL26djqzo](https://www.youtube.com/watch?v=4TZL26djqzo)
+[![Video Label](http://img.youtube.com/vi/4TZL26djqzo/0.jpg)](https://www.youtube.com/4TZL26djqzo)
+
 
 <br/><br/>
 
