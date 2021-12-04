@@ -7,6 +7,7 @@
 
 이 프로젝트를 진행하면서 직접 **프론트엔드**와 **백엔드**를 개발했습니다.
 
+<br/><br/>
 **개발기간** 
 
 **2019/11/13 ~ 2019/12/08 (5주)**
@@ -17,7 +18,7 @@
 
 **클라이언트 기능 구현(템플릿 커스터 마이징) 및 서버 구현(PHP)**
 
-**Github** : [https://github.com/jazzyfact/EsensPHP](https://github.com/jazzyfact/EsensPHP)
+<br/><br/>
 
 **Video** : [https://www.youtube.com/watch?v=4TZL26djqzo](https://www.youtube.com/watch?v=4TZL26djqzo)
 
@@ -37,10 +38,9 @@
 
 
 
-
+<br/><br/>
 ## 💻기능
 
----
 
 - **로그인, 회원가입**
 - **관리자페이지**
@@ -62,9 +62,9 @@
 - **도메인, 구글 검색 등록**
 - **쿠키와 세션**
 
+<br/><br/>
 ## 🛠️사용기술
 
----
 
 **서버** : AWS EC2 , Apache, Ubuntu, node.js
 
@@ -76,11 +76,12 @@
 
 **IDE** : Phpstorm, HeidiSQL
 
-**라이브러리** : bootstrap, jquery
+**라이브러리** : bootstrap, 
+
+<br/><br/>
 
 ## 🗳️라이센스
 
----
 
 **Author:** Colorlib
 
@@ -90,9 +91,11 @@
 
 **Credits:** Images from Unsplash
 
+<br/><br/>
+
 ## 💡프로젝트 회고
 
----
+
 
 - **5주라는 기간 동안 html, css, php 등 여러가지 언어들을 익히며 웹 사이트를 만들기 위해서 거의 밤을 새거나, 늦게까지 개발을 했었는데 힘들었었던 시간 만큼 완성된 작품을 보니 매우 뿌듯하다.**
 - **서버와의 통신 및 서버를 구축해 본 경험**
